@@ -45,4 +45,6 @@ dependencies {
 
 //    Splash Screeen
     implementation("androidx.core:core-splashscreen:1.2.0")
+
+    implementation("androidx.core:core:1.13.1")
 }
