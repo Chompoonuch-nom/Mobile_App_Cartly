@@ -119,9 +119,8 @@ public class LoginActivity extends AppCompatActivity {
                     loginBinding.alertLogin.alertLogInSuccessfully.setVisibility(View.GONE);
                     loginBinding.alertLogin.alertLogInFailed.setVisibility(View.VISIBLE);
 
-                    loginBinding.alertLogin.btnLogInAgainLayout.setOnClickListener(v -> {
-                        loginBinding.alertLogInLayout.setVisibility(View.GONE);
-                    });
+                    loginBinding.alertLogin.btnLogInAgainLayout.setOnClickListener(
+                            v -> loginBinding.alertLogInLayout.setVisibility(View.GONE));
 
                     loginBinding.alertLogin.btnForgotPassword.setOnClickListener(v -> {
                         Toast.makeText(LoginActivity.this,R.string.forgot_your_password_en,Toast.LENGTH_LONG);
