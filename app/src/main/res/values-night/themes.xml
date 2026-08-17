@@ -1,4 +1,10 @@
 <resources>
+
+    <style name="Theme.Cartly.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/cream</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_logo2</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.Cartly</item>
+    </style>
     <style name="Base.Theme.Cartly" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->

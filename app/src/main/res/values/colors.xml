@@ -2,4 +2,49 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+<!--    transparent group color -->
+    <color name="transparent">#00000000</color>
+    <color name="trans_purple">#CCCCFF</color>
+    <color name="trans_yellow">#ffd</color>
+    <color name="trans_orange">#edcea7</color>
+    <color name="trans_blue">#99CCFF</color>
+    <color name="trans_gray">#E1E1E1</color>
+    <color name="trans_gray_01">#C1C1C1</color>
+
+<!--    red group color -->
+    <color name="red">#ED1C24</color>
+    <color name="red_00">#B00000</color>
+    <color name="red_01">#ED1C24</color>
+    <color name="red_02">#FF4D4F</color>
+
+<!--    purple group color -->
+    <color name="pastel_purple">#C3B1E1</color>
+    <color name="purple_00">#FFBB86FC</color>
+    <color name="purple_01">#FF6200EE</color>
+    <color name="purple_02">#FF3700B3</color>
+    <color name="purple_lavender">#8692f7</color>
+
+<!--    green group color -->
+    <color name="green_00">#FF03DAC5</color>
+    <color name="green_01">#FF018786</color>
+    <color name="green_brand">#7FB685</color>
+
+<!--    gray group color -->
+    <color name="gray">#676767</color>
+    <color name="gray_00">#C6D0DC</color>
+    <color name="gray_01">#929AB7</color>
+    <color name="gray_02">#EFF0F3</color>
+
+<!--    yellow group color -->
+    <color name="yellow">#FE8C00</color>
+
+    <color name="cream">#FBF7EF</color>
+    <color name="ink">#153C35</color>
+    <color name="card">#FFFDF8</color>
+    <color name="coral">#E97558</color>
+    <color name="butter">#F4C95D</color>
+    <color name="sage">#DCE9D9</color>
+    <color name="muted">#6D746B</color>
+    <color name="border">#E6DDCF</color>
 </resources>

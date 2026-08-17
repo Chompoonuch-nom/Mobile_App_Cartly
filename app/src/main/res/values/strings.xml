@@ -1,3 +1,75 @@
 <resources>
     <string name="app_name">Cartly</string>
+
+<!--    Login Group String (English) -->
+    <string name="title_log_in_page_en">Log in to your account.</string>
+    <string name="sub_title_log_in_page_en">Please Log in to your account.</string>
+    <string name="title_user_name_en">User Name</string>
+    <string name="warning_enter_username_en">Please enter your username.</string>
+    <string name="warning_verify_your_username_en">Please verify your username.</string>
+    <string name="hint_enter_username_en">Enter your username</string>
+    <string name="title_password_en">Password</string>
+    <string name="hint_enter_password_en">Enter your password</string>
+    <string name="warning_enter_password_en">Please enter your password.</string>
+    <string name="warning_verify_your_password_en">Please verify your password.</string>
+    <string name="forgot_your_password_en">Forgot your password?</string>
+    <string name="title_login_en">Login</string>
+    <string name="btn_log_in_en">Log in</string>
+    <string name="dont_have_an_account_yet_en">Don\'n have an account yet?</string>
+    <string name="sign_up_en">Sign up</string> //สมัครสมาชิก
+    <string name="login_successful_en">Login successful!</string>
+    <string name="login_successful_detail_en">Login successful! Welcome to Cartly. Start exploring our products and enjoy a great shopping experience!</string>
+    <string name="btn_lets_enjoy_en">Let\'s Enjoy!</string>
+    <string name="log_in_again_en">Log in again.</string>
+    <string name="sign_in_failed_en">Sign-in Failed.</string>
+    <string name="sign_in_failed_detail_en">We couldn\'t sign you in. Please check your username and password and try again.</string>
+    
+<!--    Sign up group String (English) -->
+    <string name="title_sign_up_page_en">Create Your Account</string>
+    <string name="title_email_en">Email</string>
+    <string name="warning_enter_email_en">Please enter your email.</string>
+    <string name="enter_your_email_en">Enter your email</string>
+    <string name="title_first_name_en">First Name</string>
+    <string name="enter_your_first_name_en">Enter your first name</string>
+    <string name="warning_enter_your_first_name_en">Please enter your first name.</string>
+    <string name="title_last_name_en">Last Name</string>
+    <string name="enter_your_last_name_en">Enter your last name</string>
+    <string name="warning_enter_your_last_name_en">Please enter your last name.</string>
+    <string name="title_policy_en">I agree with</string>
+    <string name="btn_term_of_service_en">term of service</string>
+    <string name="and_en">and</string>
+    <string name="btn_policy_en">privacy policy</string>
+    <string name="successfully_signed_up_en">Successfully Signed up!</string>
+    <string name="successfully_signed_up_detail_en">Welcome to Cartly! Your account has been created successfully. Please sign in to discover quality products and enjoy your shopping experience.</string>
+    <string name="already_have_an_account_en">Already have an account? Log in</string>
+    <string name="unable_to_create_your_account_en">Unable to create your account.</string>
+    <string name="unable_to_create_account_something_went_wrong_en">Something went wrong while creating your account. Please check your information and try again.</string>
+    <string name="unable_to_create_account_username_dup_en">This username is already taken. Please choose another username and try again.</string>
+    <string name="unable_to_create_account_email_dup_en">This email is already registered. Please use a difference email address or sign in to your existing account.</string>
+    <string name="Please_make_sure_all_required_fields_en">Please make sure all required fields are completed and try again.</string>
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

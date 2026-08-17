@@ -1,4 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.Cartly.Splash" parent="Theme.SplashScreen">
+<!--        background color -->
+        <item name="windowSplashScreenBackground">@color/cream</item>
+<!--        logo -->
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_logo2</item>
+<!--        base theme splashscreen-->
+        <item name="postSplashScreenTheme">@style/Base.Theme.Cartly</item>
+    </style>
     <!-- Base application theme. -->
     <style name="Base.Theme.Cartly" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
