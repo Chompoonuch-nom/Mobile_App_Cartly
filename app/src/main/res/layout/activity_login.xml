@@ -4,7 +4,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@color/cream">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -166,7 +167,6 @@
                     android:text="@string/forgot_your_password_en"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:textSize="14sp"
-                    android:textStyle="bold"
                     android:textColor="@color/ink"/>
             </RelativeLayout>
 
@@ -189,7 +189,8 @@
                     android:text="@string/btn_log_in_en"
                     android:textColor="@color/ink"
                     android:fontFamily="@font/adlamdisplay_regular"
-                    android:textSize="14sp"/>
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
             </RelativeLayout>
 
 <!--            Layout Sign up -->
@@ -220,7 +221,7 @@
                         android:text="@string/sign_up_en"
                         android:textColor="@color/ink"
                         android:fontFamily="@font/adlamdisplay_regular"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"/>
                 </RelativeLayout>
             </RelativeLayout>

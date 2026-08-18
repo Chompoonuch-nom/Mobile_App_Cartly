@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void initComponent() {
         login();
-        register();
+        signUp();
     }
 
     private void login() {
@@ -142,11 +142,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void register() {
+    private void signUp() {
         loginBinding.btnSignUp.setOnClickListener(view -> {
             Toast.makeText(LoginActivity.this,R.string.sign_up_en,Toast.LENGTH_LONG).show();
 
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
             startActivity(intent);
         });
     }
