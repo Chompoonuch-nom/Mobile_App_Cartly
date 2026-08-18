@@ -21,10 +21,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     private boolean isPasswordVisibility = false;
     private boolean isRePasswordVisibility = false;
-    private final int STATUS_LOADING = 0;
-    private final int STATUS_SUCCESS = 1;
-    private final int STATUS_FAILED = 2;
-
     private boolean privacy = false;
 
     private ActivitySignUpBinding signUpBinding;
@@ -95,8 +91,6 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         signUpBinding.btnSignUpLayout.setOnClickListener(view -> {
-            String user_name = "chom";
-            String pass = "1111";
 
             String email = signUpBinding.edtEnterEmail.getText().toString().trim();
             String first_name = signUpBinding.edtEnterFirstName.getText().toString().trim();
