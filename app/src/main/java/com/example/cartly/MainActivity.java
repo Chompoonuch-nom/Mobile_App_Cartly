@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void setBottomNavigation() {
         if (userStatus) {
-//            loadFragment(new HomeFragment());
             mainBinding.customerBottomNavigationView.setOnItemSelectedListener(menuItem -> {
                 int id = menuItem.getItemId();
                 if (id == R.id.homePage) {
@@ -71,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             });
         } else {
-//            loadFragment(new HomeFragment());
             mainBinding.adminBottomNavigationView.setOnItemSelectedListener(menuItem -> {
                 int id = menuItem.getItemId();
                 if (id == R.id.homePage) {
@@ -90,9 +88,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, fragment);
-        fragmentTransaction.commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frameLayout, fragment)
+                .commit();
     }
 }

@@ -1,18 +1,11 @@
 package com.example.cartly.Fragment;
 
 import android.os.Bundle;
-
-import androidx.core.splashscreen.SplashScreen;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.cartly.R;
 import com.example.cartly.databinding.FragmentCartBinding;
-
-import java.util.Objects;
 
 public class CartFragment extends Fragment {
     private FragmentCartBinding fragmentCartBinding;
@@ -37,10 +30,10 @@ public class CartFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
     }
 
     @Override
