@@ -53,6 +53,27 @@
     <string name="unable_to_create_account_username_dup_en">This username is already taken. Please choose another username and try again.</string>
     <string name="unable_to_create_account_email_dup_en">This email is already registered. Please use a difference email address or sign in to your existing account.</string>
     <string name="please_make_sure_all_required_fields_en">Please make sure all required fields are completed and try again.</string>
+
+    <!--    Bottom Nav Group -->
+    <string name="home_page_en">HOME</string>
+    <string name="cart_page_en">CART</string>
+    <string name="store_page_en">STORE</string>
+    <string name="profile_page_en">PROFILE</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    Setting Group -->
+    <string name="profile_title_en">Profile</string>
+    <string name="profile_personal_data_en">Personal Data</string>
+    <string name="profile_settings_en">Settings</string>
+    <string name="profile_extra_card_en">Extra Card</string>
+    <string name="profile_support_title_en">Support</string>
+    <string name="profile_support_help_center_en">Help Center</string>
+    <string name="profile_support_request_acc_en">Request Account Deletion</string>
+    <string name="profile_support_add_acc_en">Add another account</string>
+    <string name="sign_out_en">Sign Out</string>
+<!--    App version-->
+    <string name="version_en">Version 1.0.0</string>
 </resources>
 
 

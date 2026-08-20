@@ -9,8 +9,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.cartly.Fragment.CartFragment;
+import com.example.cartly.Fragment.HomeFragment;
+import com.example.cartly.Fragment.ProfileFragment;
+import com.example.cartly.Fragment.StoreFragment;
+import com.example.cartly.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding mainBinding;
+    private boolean userStatus = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +33,66 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+
+        mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(mainBinding.getRoot());
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        if (savedInstanceState == null) {
+            loadFragment(new HomeFragment());
+        }
+        initComponent();
+    }
+
+    private void initComponent() {
+        setBottomNavigation();
+    }
+
+    private void setBottomNavigation() {
+        if (userStatus) {
+//            loadFragment(new HomeFragment());
+            mainBinding.customerBottomNavigationView.setOnItemSelectedListener(menuItem -> {
+                int id = menuItem.getItemId();
+                if (id == R.id.homePage) {
+                    loadFragment(new HomeFragment());
+                    return true;
+                } else if (id == R.id.cartPage) {
+                    loadFragment(new CartFragment());
+                    return true;
+                } else if (id == R.id.profilePage) {
+                    loadFragment(new ProfileFragment());
+                    return true;
+                }
+                return false;
+            });
+        } else {
+//            loadFragment(new HomeFragment());
+            mainBinding.adminBottomNavigationView.setOnItemSelectedListener(menuItem -> {
+                int id = menuItem.getItemId();
+                if (id == R.id.homePage) {
+                    loadFragment(new HomeFragment());
+                    return true;
+                } else if (id == R.id.storePage) {
+                    loadFragment(new StoreFragment());
+                    return true;
+                } else if (id == R.id.profilePage) {
+                    loadFragment(new ProfileFragment());
+                    return true;
+                }
+                return false;
+            });
+        }
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.commit();
     }
 }
