@@ -2,6 +2,8 @@ package com.example.cartly;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -42,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             loadFragment(new HomeFragment());
         }
+
+        userStatus = getIntent().getBooleanExtra("User",true);
         initComponent();
+
     }
 
     private void initComponent() {
@@ -51,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setBottomNavigation() {
         if (userStatus) {
+            mainBinding.customerBottomNavigationView.setVisibility(View.VISIBLE);
+            mainBinding.adminBottomNavigationView.setVisibility(View.GONE);
             mainBinding.customerBottomNavigationView.setOnItemSelectedListener(menuItem -> {
                 int id = menuItem.getItemId();
                 if (id == R.id.homePage) {
@@ -66,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             });
         } else {
+            mainBinding.customerBottomNavigationView.setVisibility(View.GONE);
+            mainBinding.adminBottomNavigationView.setVisibility(View.VISIBLE);
             mainBinding.adminBottomNavigationView.setOnItemSelectedListener(menuItem -> {
                 int id = menuItem.getItemId();
                 if (id == R.id.homePage) {

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="146dp"
+    android:layout_height="190dp"
+    android:layout_marginHorizontal="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_card"
+        android:layout_margin="8dp">
+
+        <RelativeLayout
+            android:id="@+id/imageProductLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
+            <ImageView
+                android:id="@+id/mvProduct"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/qr_code_add_24"
+                android:scaleType="fitStart"
+                app:tint="@color/gray_02"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/mvBtnLikeProduct"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/icon_mood_heart_24"
+                android:layout_margin="10dp"
+                app:tint="@color/red_02"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tvHotSale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hot_sale_en"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:fontFamily="@font/adlamdisplay_regular"
+        android:textColor="@color/green_brand"
+        android:background="@drawable/bg_card"
+        android:layout_marginTop="4dp"
+        android:padding="6dp"/>
+    <RelativeLayout
+        android:id="@+id/detailProductLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_card">
+        <TextView
+            android:id="@+id/tvNameProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_name_en"
+            android:textSize="10sp"
+            android:textColor="@color/muted"
+            android:textStyle="bold"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:textAlignment="center"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_centerHorizontal="true"
+            tools:ignore="SmallSp" />
+        <TextView
+            android:id="@+id/tvDetailProduct"
+            android:layout_below="@+id/tvNameProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/description_en"
+            android:textSize="10sp"
+            android:textColor="@color/muted"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:textAlignment="center"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginVertical="2dp"
+            android:paddingHorizontal="10dp"
+            android:shadowRadius="12"
+            android:layout_centerHorizontal="true"
+            tools:ignore="SmallSp" />
+        <TextView
+            android:id="@+id/tvPriceProduct"
+            android:layout_below="@+id/tvDetailProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$1.99"
+            tools:ignore="HardcodedText"
+            android:textSize="12sp"
+            android:textColor="@color/muted"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:layout_marginVertical="4dp"
+            android:paddingHorizontal="10dp"
+            android:shadowRadius="12"/>
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/mvAddToCart"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/icon_add_product"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        tools:ignore="ContentDescription" />
+</RelativeLayout>

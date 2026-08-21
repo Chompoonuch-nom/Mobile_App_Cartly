@@ -23,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding loginBinding;
     private boolean isPasswordVisible = false;
+    private Boolean user = null;
+    private boolean alertStatus = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,8 @@ public class LoginActivity extends AppCompatActivity {
         loginBinding.btnLogInLayout.setOnClickListener(view -> {
             String user_name = "chom";
             String pass = "1111";
+            String admin_name = "admin";
+            String admin_pass = "1234";
             String username = loginBinding.edtEnterUserName.getText().toString();
             String password = loginBinding.edtEnterPassword.getText().toString();
 
@@ -104,28 +108,17 @@ public class LoginActivity extends AppCompatActivity {
                 loginBinding.alertLogin.alertLogInFailed.setVisibility(View.GONE);
 
                 if (username.equals(user_name) && password.equals(pass)) {
-                    loginBinding.alertLogin.progressBarAlertLogin.setVisibility(View.GONE);
-                    loginBinding.alertLogInLayout.setVisibility(View.VISIBLE);
-                    loginBinding.alertLogin.alertLogInSuccessfully.setVisibility(View.VISIBLE);
-                    loginBinding.alertLogin.alertLogInFailed.setVisibility(View.GONE);
+                    user = true;
+                    alertStatus = true;
+                    checkLoginStatus(user, alertStatus);
 
-                    loginBinding.alertLogin.btnLetsEnjoyLayout.setOnClickListener(v -> {
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    });
+                } else if (username.equals(admin_name) && password.equals(admin_pass)) {
+                    user = false;
+                    alertStatus = true;
+                    checkLoginStatus(user, alertStatus);
                 } else {
-                    loginBinding.alertLogin.progressBarAlertLogin.setVisibility(View.GONE);
-                    loginBinding.alertLogInLayout.setVisibility(View.VISIBLE);
-                    loginBinding.alertLogin.alertLogInSuccessfully.setVisibility(View.GONE);
-                    loginBinding.alertLogin.alertLogInFailed.setVisibility(View.VISIBLE);
-
-                    loginBinding.alertLogin.btnLogInAgainLayout.setOnClickListener(
-                            v -> loginBinding.alertLogInLayout.setVisibility(View.GONE));
-
-                    loginBinding.alertLogin.btnForgotPassword.setOnClickListener(v -> {
-                        Toast.makeText(LoginActivity.this,R.string.forgot_your_password_en,Toast.LENGTH_LONG);
-                        loginBinding.alertLogInLayout.setVisibility(View.GONE);
-                    });
+                    alertStatus = false;
+                    checkLoginStatus(user, alertStatus);
                 }
             } else {
                 if (username.isEmpty() && password.isEmpty()) {
@@ -140,6 +133,34 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void checkLoginStatus(boolean user, boolean alertStatus) {
+        if (alertStatus) {
+            loginBinding.alertLogin.progressBarAlertLogin.setVisibility(View.GONE);
+            loginBinding.alertLogInLayout.setVisibility(View.VISIBLE);
+            loginBinding.alertLogin.alertLogInSuccessfully.setVisibility(View.VISIBLE);
+            loginBinding.alertLogin.alertLogInFailed.setVisibility(View.GONE);
+
+            loginBinding.alertLogin.btnLetsEnjoyLayout.setOnClickListener(v -> {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("User", user);
+                startActivity(intent);
+            });
+        } else {
+            loginBinding.alertLogin.progressBarAlertLogin.setVisibility(View.GONE);
+            loginBinding.alertLogInLayout.setVisibility(View.VISIBLE);
+            loginBinding.alertLogin.alertLogInSuccessfully.setVisibility(View.GONE);
+            loginBinding.alertLogin.alertLogInFailed.setVisibility(View.VISIBLE);
+
+            loginBinding.alertLogin.btnLogInAgainLayout.setOnClickListener(
+                    v -> loginBinding.alertLogInLayout.setVisibility(View.GONE));
+
+            loginBinding.alertLogin.btnForgotPassword.setOnClickListener(v -> {
+                Toast.makeText(LoginActivity.this,R.string.forgot_your_password_en,Toast.LENGTH_LONG).show();
+                loginBinding.alertLogInLayout.setVisibility(View.GONE);
+            });
+        }
     }
 
     private void signUp() {

@@ -72,7 +72,58 @@
     <string name="profile_support_request_acc_en">Request Account Deletion</string>
     <string name="profile_support_add_acc_en">Add another account</string>
     <string name="sign_out_en">Sign Out</string>
-<!--    App version-->
+
+    <!--    Market Group -->
+    <string name="search_en">Search</string>
+    <string name="market_title_en">FIND PRODUCTS.</string>
+    <string name="description_title_en">Description</string>
+    <string name="add_to_cart_en">Add to Cart</string>
+    <string name="my_product_en">My Product</string>
+    <string name="see_all_en">See All</string>
+    <string name="my_order_en">My Order</string>
+    <string name="add_product_en">Add Product</string>
+    <string name="order_empty_en">ORDER EMPTY.</string>
+    <string name="all_product_en">ALL PRODUCT.</string>
+    <string name="follow_en">FOLLOW</string>
+    <string name="hot_sale_en">HOT SALE</string>
+    <string name="find_by_category_en">FIND BY CATEGORY</string>
+    <string name="update_status_order_en">Update Status Order</string>
+
+    <!--    Add Product Group -->
+    <string name="product_name_en">Product Name</string>
+    <string name="hint_product_name_en">Enter product name</string>
+    <string name="warning_product_name_en">Please enter product name.</string>
+    <string name="description_en">Description</string>
+    <string name="warning_description_en">Please enter description.</string>
+    <string name="hint_description_en">Enter description</string>
+    <string name="product_price_en">Price</string>
+    <string name="add_img_product_en">Add Image Product</string>
+    <string name="baht_en">BAHT</string>
+    <string name="edit_product_en">Edit Product</string>
+    <string name="save_en">Save</string>
+    <string name="success_en">SUCCESS!</string>
+    <string name="edit_success_en">Edit Product Success.</string>
+    <string name="fail_en">FAIL!</string>
+    <string name="edit_fail_en">Edit Fail, Please Check Again.</string>
+    <string name="add_success_en">Add Product Success.</string>
+    <string name="add_fail_en">Add Fail, Please Check Again.</string>
+    <string name="order_en">ORDER.</string>
+
+    <string name="edit_en">EDIT</string>
+    <string name="shopping_cart_en">SHOPPING CART</string>
+    <string name="select_all_en">Select All</string>
+    <string name="total_en">Total</string>
+    <string name="check_out_en">Check Out</string>
+    <string name="payment_en">PAYMENT</string>
+    <string name="payment_detail_en">Payment Details</string>
+    <string name="merchandise_subtotal_en">Merchandise Subtotal</string>
+    <string name="shipping_subtotal">Shipping Subtotal</string>
+    <string name="voucher_discount">Voucher Discount</string>
+    <string name="total_payment">Total payment</string>
+
+    <string name="status_order_en">STATUS ORDER</string>
+
+    <!--    App version-->
     <string name="version_en">Version 1.0.0</string>
 </resources>
 
