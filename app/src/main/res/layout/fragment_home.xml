@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp">
+
         <TextView
             android:id="@+id/tvTitleScreen"
             android:layout_width="wrap_content"
@@ -20,19 +22,21 @@
             android:textStyle="bold"
             android:fontFamily="@font/adlamdisplay_regular"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"/>
+            android:layout_marginStart="20dp" />
+
         <RelativeLayout
             android:id="@+id/countOrderLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true">
+
             <ImageView
                 android:id="@+id/mvBtnCart"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/shopping_cart_24"
                 android:layout_marginTop="15dp"
-                android:tint="@color/muted"/>
+                app:tint="@color/muted" />
             <TextView
                 android:id="@+id/tvCountOrder"
                 android:layout_toEndOf="@+id/mvBtnCart"
@@ -46,7 +50,8 @@
                 android:textAlignment="center"
                 android:foregroundGravity="top"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/bg_sage"/>
+                android:background="@drawable/bg_sage"
+                tools:ignore="HardcodedText" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -63,9 +68,9 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/icon_category_search_24"
-                android:tint="@color/ink"
                 android:layout_marginStart="20dp"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                app:tint="@color/ink" />
             <EditText
                 android:id="@+id/edtSearch"
                 android:layout_toEndOf="@+id/mvSearch"
