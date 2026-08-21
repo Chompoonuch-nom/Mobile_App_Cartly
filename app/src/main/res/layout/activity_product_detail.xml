@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/qr_code_add_24"
-                app:tint="@color/gray_00"
+                app:tint="@color/trans_gray"
                 android:scaleType="fitCenter"
                 tools:ignore="ContentDescription" />
             <RelativeLayout

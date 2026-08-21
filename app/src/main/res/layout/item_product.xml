@@ -24,7 +24,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/qr_code_add_24"
                 android:scaleType="fitStart"
-                app:tint="@color/gray_02"
+                app:tint="@color/trans_gray"
                 tools:ignore="ContentDescription" />
             <ImageView
                 android:id="@+id/mvBtnLikeProduct"

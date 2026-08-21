@@ -9,7 +9,6 @@
     android:orientation="vertical"
     android:background="@color/cream"
     tools:context=".MainActivity">
-
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
@@ -21,9 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="false"
-        android:background="@color/transparent"
-        app:itemIconTint="@color/ink"
-        app:itemTextColor="@color/ink"
+        app:backgroundTint="@color/transparent"
+        app:itemIconTint="@color/pastel_purple"
+        app:itemTextColor="@color/pastel_purple"
         app:menu="@menu/bottom_nav_customer_menu"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/adminBottomNavigationView"
@@ -31,9 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="false"
-        android:background="@color/transparent"
-        app:itemIconTint="@color/ink"
-        app:itemTextColor="@color/ink"
+        app:backgroundTint="@color/transparent"
+        app:itemIconTint="@color/pastel_purple"
+        app:itemTextColor="@color/pastel_purple"
         app:menu="@menu/bottom_nav_admin_menu"/>
-
 </LinearLayout>

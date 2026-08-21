@@ -1,11 +1,22 @@
 package com.example.cartly.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.cartly.Adapter.CartShoppingAdapter;
+import com.example.cartly.Dao.CartDao;
+import com.example.cartly.Dao.StoreDao;
+import com.example.cartly.Model.CartShoppingModel;
+import com.example.cartly.ProductDetailActivity;
 import com.example.cartly.databinding.FragmentCartBinding;
+
+import java.util.ArrayList;
 
 public class CartFragment extends Fragment {
     private FragmentCartBinding fragmentCartBinding;
@@ -46,8 +57,26 @@ public class CartFragment extends Fragment {
         initComponent();
         return view;
     }
-
     private void initComponent() {
+        setCartShopping();
+        setComponent();
+    }
+    private void setCartShopping() {
+        CartDao carts = CartShoppingModel.getCartShopping();
+        ArrayList<StoreDao> stores = CartShoppingModel.getCartShopping().getStores();
+        fragmentCartBinding.tvTotal.setText(String.valueOf(carts.getTotal()));
+
+        fragmentCartBinding.recyclerViewCart.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        CartShoppingAdapter adapter = new CartShoppingAdapter(getContext(), stores);
+        fragmentCartBinding.recyclerViewCart.setAdapter(adapter);
+
+        fragmentCartBinding.btnCheckOutLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), ProductDetailActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void setComponent() {
 
     }
 }
