@@ -21,8 +21,8 @@
         android:layout_height="wrap_content"
         android:animateLayoutChanges="false"
         app:backgroundTint="@color/transparent"
-        app:itemIconTint="@color/pastel_purple"
-        app:itemTextColor="@color/pastel_purple"
+        app:itemIconTint="@color/muted"
+        app:itemTextColor="@color/muted"
         app:menu="@menu/bottom_nav_customer_menu"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/adminBottomNavigationView"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:animateLayoutChanges="false"
         app:backgroundTint="@color/transparent"
-        app:itemIconTint="@color/pastel_purple"
-        app:itemTextColor="@color/pastel_purple"
+        app:itemIconTint="@color/muted"
+        app:itemTextColor="@color/muted"
         app:menu="@menu/bottom_nav_admin_menu"/>
 </LinearLayout>

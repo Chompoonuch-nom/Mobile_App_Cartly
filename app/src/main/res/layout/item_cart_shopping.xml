@@ -10,7 +10,7 @@
         <RelativeLayout
             android:id="@+id/topBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="54dp">
+            android:layout_height="30dp">
             <CheckBox
                 android:id="@+id/checkbox"
                 android:layout_width="wrap_content"
@@ -31,8 +31,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Store Name"
-                android:textSize="14sp"
-                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textStyle="normal"
                 android:textColor="@color/ink"
                 android:maxLines="1"
                 android:ellipsize="end"
@@ -41,8 +41,9 @@
                 android:layout_marginHorizontal="10dp"/>
             <RelativeLayout
                 android:id="@+id/btnEditItemLayout"
-                android:layout_width="70dp"
-                android:layout_height="30dp"
+                android:visibility="gone"
+                android:layout_width="56dp"
+                android:layout_height="18dp"
                 android:background="@drawable/bg_sage"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
@@ -53,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/edit_en"
                     android:textSize="12sp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     android:textColor="@color/green_brand"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:layout_centerInParent="true"/>
