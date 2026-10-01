@@ -44,9 +44,22 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
 
 //    Splash Screeen
-    implementation("androidx.core:core-splashscreen:1.2.0")
+    implementation(libs.core.splashscreen)
 
-    implementation("androidx.core:core:1.13.1")
-    implementation("androidx.navigation:navigation-ui:2.9.8")
-    implementation("androidx.navigation:navigation-fragment:2.9.8")
+    implementation(libs.core)
+    implementation(libs.navigation.ui)
+    implementation(libs.androidx.navigation.fragment)
+
+//    Retrofit
+    implementation (libs.retrofit)
+    implementation (libs.retrofit2.converter.gson)
+
+//    Retrofit Adapter for RxJava3
+    implementation(libs.retrofit2.adapter.rxjava3)
+//    Okhttp
+    implementation(libs.logging.interceptor)
+
+//    RxJava 3 + RxAndroid 3 (เวอร์ชันปัจจุบัน)
+    implementation(libs.rxjava)
+    implementation(libs.rxandroid)
 }

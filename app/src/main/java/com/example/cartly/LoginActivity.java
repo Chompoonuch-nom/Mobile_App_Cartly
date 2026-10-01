@@ -1,10 +1,12 @@
 package com.example.cartly;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,7 +19,18 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
+import com.example.cartly.ApiService.AuthApiService;
+import com.example.cartly.RequestDao.LoginRequestDao;
+import com.example.cartly.ResponseDao.ApiResponseDao;
+import com.example.cartly.ResponseDao.AuthResponseDao;
+import com.example.cartly.ResponseDao.LoginResponseDao;
+import com.example.cartly.Retrofit.RetrofitAuthService;
+import com.example.cartly.Util.ApiCallback;
 import com.example.cartly.databinding.ActivityLoginBinding;
+
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,6 +38,11 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isPasswordVisible = false;
     private Boolean user = null;
     private boolean alertStatus = true;
+    private final int STATUS_LOADING = 0;
+    private final int STATUS_SUCCESS = 1;
+    private final int STATUS_FAILED = 2;
+    private final AuthApiService authApiService = new AuthApiService();
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +80,12 @@ public class LoginActivity extends AppCompatActivity {
         );
     }
     private void initComponent() {
-        login();
+        doLogin();
         signUp();
     }
 
-    private void login() {
+    // เรียก API ตอนผู้ใช้กดปุ่ม (action) ไม่ใช่ใน onCreate
+    private void doLogin() {
         loginBinding.btnShowPassword.setOnClickListener(view -> {
             if (isPasswordVisible) {
                 //Close Password
@@ -84,67 +103,91 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginBinding.btnLogInLayout.setOnClickListener(view -> {
-            String user_name = "chom";
-            String pass = "1111";
-            String admin_name = "admin";
-            String admin_pass = "1234";
-            String username = loginBinding.edtEnterUserName.getText().toString();
-            String password = loginBinding.edtEnterPassword.getText().toString();
 
-            loginBinding.tvWarningUserName.setText(R.string.warning_enter_username_en);
+            String email = loginBinding.edtEnterEmail.getText().toString();
+            String password = loginBinding.edtEnterPassword.getText().toString();
+            LoginRequestDao loginRequest = new LoginRequestDao(email, password);
+
+            loginBinding.tvWarningUserName.setText(R.string.warning_enter_email_en);
             loginBinding.tvWarningPassword.setText(R.string.warning_enter_password_en);
 
             loginBinding.alertLogin.progressBarAlertLogin.setVisibility(View.VISIBLE);
             loginBinding.alertLogin.alertLogInSuccessfully.setVisibility(View.GONE);
             loginBinding.alertLogin.alertLogInFailed.setVisibility(View.GONE);
 
-            if (!username.isEmpty() && !password.isEmpty()) {
-                loginBinding.warningUserNameLayout.setVisibility(View.GONE);
+            if (!email.isEmpty() && !password.isEmpty()) {
+                loginBinding.warningEmailLayout.setVisibility(View.GONE);
                 loginBinding.warningPasswordLayout.setVisibility(View.GONE);
 
                 loginBinding.alertLogInLayout.setVisibility(View.VISIBLE);
-                loginBinding.alertLogin.progressBarAlertLogin.setVisibility(View.GONE);
-                loginBinding.alertLogin.alertLogInSuccessfully.setVisibility(View.VISIBLE);
+                loginBinding.alertLogin.progressBarAlertLogin.setVisibility(View.VISIBLE);
+                loginBinding.alertLogin.alertLogInSuccessfully.setVisibility(View.GONE);
                 loginBinding.alertLogin.alertLogInFailed.setVisibility(View.GONE);
 
-                if (username.equals(user_name) && password.equals(pass)) {
-                    user = true;
-                    alertStatus = true;
-                    checkLoginStatus(user, alertStatus);
+                authApiService.login(new LoginRequestDao(email, password), new ApiCallback<AuthResponseDao>() {
+                    @Override
+                    public void onSuccess(AuthResponseDao data, String message) {
+                        if (isFinishing() || isDestroyed()) return;
+                        alertLoginStatus(true);
+                        String token = data.getToken();
+                        // token ถูกบันทึกลง TokenManager โดย AuthApiService แล้ว
+                        getSharedPreferences("cartly_prefs", MODE_PRIVATE)
+                                .edit()
+                                .putString("jwt_token", token)
+                                .apply();
 
-                } else if (username.equals(admin_name) && password.equals(admin_pass)) {
-                    user = false;
-                    alertStatus = true;
-                    checkLoginStatus(user, alertStatus);
-                } else {
-                    alertStatus = false;
-                    checkLoginStatus(user, alertStatus);
-                }
+                        loginBinding.alertLogin.btnLetsEnjoyLayout.setOnClickListener(v -> {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra("User", user);
+                            startActivity(intent);
+                        });
+                    }
+
+                    @Override
+                    public void onError(String message, int httpCode) {
+                        if (isFinishing() || isDestroyed()) return;
+                        alertLoginStatus(false);
+                        Log.e("API_ERROR", "Error: "+ message);
+                    }
+                });
+
+//                if (username.equals(user_name) && password.equals(pass)) {
+//                    user = true;
+//                    alertStatus = true;
+//                    checkLoginStatus(user, alertStatus);
+//
+//                } else if (username.equals(admin_name) && password.equals(admin_pass)) {
+//                    user = false;
+//                    alertStatus = true;
+//                    checkLoginStatus(user, alertStatus);
+//                } else {
+//                    alertStatus = false;
+//                    checkLoginStatus(user, alertStatus);
+//                }
             } else {
-                if (username.isEmpty() && password.isEmpty()) {
-                    loginBinding.warningUserNameLayout.setVisibility(View.VISIBLE);
+                if (email.isEmpty() && password.isEmpty()) {
+                    loginBinding.warningEmailLayout.setVisibility(View.VISIBLE);
                     loginBinding.warningPasswordLayout.setVisibility(View.VISIBLE);
-                } else if (username.isEmpty()) {
-                    loginBinding.warningUserNameLayout.setVisibility(View.VISIBLE);
+                } else if (email.isEmpty()) {
+                    loginBinding.warningEmailLayout.setVisibility(View.VISIBLE);
                     loginBinding.warningPasswordLayout.setVisibility(View.GONE);
                 } else {
-                    loginBinding.warningUserNameLayout.setVisibility(View.GONE);
+                    loginBinding.warningEmailLayout.setVisibility(View.GONE);
                     loginBinding.warningPasswordLayout.setVisibility(View.VISIBLE);
                 }
             }
         });
     }
 
-    private void checkLoginStatus(boolean user, boolean alertStatus) {
-        if (alertStatus) {
+    private void alertLoginStatus (boolean statusAlert) {
+        if (statusAlert) {
             loginBinding.alertLogin.progressBarAlertLogin.setVisibility(View.GONE);
             loginBinding.alertLogInLayout.setVisibility(View.VISIBLE);
             loginBinding.alertLogin.alertLogInSuccessfully.setVisibility(View.VISIBLE);
             loginBinding.alertLogin.alertLogInFailed.setVisibility(View.GONE);
-
             loginBinding.alertLogin.btnLetsEnjoyLayout.setOnClickListener(v -> {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("User", user);
+//                intent.putExtra("User", user);
                 startActivity(intent);
             });
         } else {
@@ -152,7 +195,6 @@ public class LoginActivity extends AppCompatActivity {
             loginBinding.alertLogInLayout.setVisibility(View.VISIBLE);
             loginBinding.alertLogin.alertLogInSuccessfully.setVisibility(View.GONE);
             loginBinding.alertLogin.alertLogInFailed.setVisibility(View.VISIBLE);
-
             loginBinding.alertLogin.btnLogInAgainLayout.setOnClickListener(
                     v -> loginBinding.alertLogInLayout.setVisibility(View.GONE));
 
@@ -171,6 +213,4 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-
-
 }

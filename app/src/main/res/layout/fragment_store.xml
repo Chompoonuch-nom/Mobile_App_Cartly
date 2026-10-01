@@ -5,10 +5,32 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.StoreFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/topBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_margin="10dp">
+            <ImageView
+                android:id="@+id/mvBtnArrowBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_back_arrow_circle"/>
+            <TextView
+                android:id="@+id/tvTitlePage"
+                android:layout_toEndOf="@+id/mvBtnArrowBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/store_page_en"
+                android:textSize="14sp"
+                android:textColor="@color/muted"
+                android:fontFamily="@font/adlamdisplay_regular"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"/>
+        </RelativeLayout>
+    </RelativeLayout>
 
 </FrameLayout>

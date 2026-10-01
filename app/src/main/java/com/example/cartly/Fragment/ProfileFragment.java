@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.cartly.LoginActivity;
 import com.example.cartly.databinding.FragmentProfileBinding;
 import javax.security.auth.login.LoginException;
 
@@ -54,7 +56,7 @@ public class ProfileFragment extends Fragment {
 
     private void signOut() {
         fragmentProfileBinding.btnSightOutLayout.setOnClickListener(view -> {
-            Intent signOutIntent = new Intent(getContext(), LoginException.class);
+            Intent signOutIntent = new Intent(getContext(), LoginActivity.class);
             startActivity(signOutIntent);
         });
     }

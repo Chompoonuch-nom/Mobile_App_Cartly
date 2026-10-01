@@ -35,31 +35,31 @@
                 android:textSize="14sp"
                 android:textColor="@color/muted"/>
 
-<!--            Layout Enter Username-->
+<!--            Layout Enter Email-->
             <RelativeLayout
-                android:id="@+id/UserNameLayout"
+                android:id="@+id/emailLayout"
                 android:layout_below="@id/tvSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/tvTitleUserName"
+                    android:id="@+id/tvTitleEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:text="@string/title_user_name_en"
+                    android:text="@string/title_email_en"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:textStyle="bold"
                     android:textSize="14sp"
                     android:textColor="@color/muted"/>
                 <RelativeLayout
-                    android:id="@+id/warningUserNameLayout"
+                    android:id="@+id/warningEmailLayout"
                     android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:layout_alignParentEnd="true">
                     <ImageView
-                        android:id="@+id/mvWarningUserName"
+                        android:id="@+id/mvWarningEmail"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_marginHorizontal="4dp"
@@ -68,22 +68,22 @@
                         android:id="@+id/tvWarningUserName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/mvWarningUserName"
-                        android:text="@string/warning_enter_username_en"
+                        android:layout_toEndOf="@id/mvWarningEmail"
+                        android:text="@string/warning_enter_email_en"
                         android:fontFamily="@font/adlamdisplay_regular"
                         android:textSize="14sp"
                         android:textColor="@color/yellow"/>
                 </RelativeLayout>
 
                 <EditText
-                    android:id="@+id/edtEnterUserName"
-                    android:layout_below="@id/tvTitleUserName"
+                    android:id="@+id/edtEnterEmail"
+                    android:layout_below="@id/tvTitleEmail"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginTop="10dp"
                     android:paddingHorizontal="20dp"
-                    android:inputType="text"
-                    android:hint="@string/hint_enter_username_en"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/enter_your_email_en"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:textSize="14sp"
                     android:textColor="@color/ink"
@@ -94,7 +94,7 @@
 <!--            Layout Enter Password-->
             <RelativeLayout
                 android:id="@+id/PasswordLayout"
-                android:layout_below="@id/UserNameLayout"
+                android:layout_below="@id/emailLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
