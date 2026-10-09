@@ -7,7 +7,7 @@ import com.example.cartly.Retrofit.RetrofitService;
  * สร้าง AuthApiServiceInterface จาก RetrofitService.getRetrofitInstance()
  * สร้างครั้งเดียวแล้วใช้ซ้ำ
  */
-public class AuthRetrofitService {
+public final class AuthRetrofitService {
     private static AuthApiServiceInterface instance;
     private AuthRetrofitService() {}
     public static synchronized AuthApiServiceInterface getInstance() {

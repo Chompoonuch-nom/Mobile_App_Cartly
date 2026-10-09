@@ -8,29 +8,107 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout
-            android:id="@+id/topBarLayout"
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/topBarLayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="54dp"-->
+<!--            android:layout_margin="10dp">-->
+<!--            <ImageView-->
+<!--                android:id="@+id/mvBtnArrowBack"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:src="@drawable/icon_back_arrow_circle"/>-->
+<!--            <TextView-->
+<!--                android:id="@+id/tvTitlePage"-->
+<!--                android:layout_toEndOf="@+id/mvBtnArrowBack"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/store_page_en"-->
+<!--                android:textSize="14sp"-->
+<!--                android:textColor="@color/muted"-->
+<!--                android:fontFamily="@font/adlamdisplay_regular"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_marginStart="20dp"/>-->
+<!--        </RelativeLayout>-->
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_margin="10dp">
-            <ImageView
-                android:id="@+id/mvBtnArrowBack"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/icon_back_arrow_circle"/>
-            <TextView
-                android:id="@+id/tvTitlePage"
-                android:layout_toEndOf="@+id/mvBtnArrowBack"
-                android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/store_page_en"
-                android:textSize="14sp"
-                android:textColor="@color/muted"
-                android:fontFamily="@font/adlamdisplay_regular"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="20dp"/>
-        </RelativeLayout>
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="ค้นหาสินค้า..." />
+
+                <Button
+                    android:id="@+id/btnSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ค้นหา" />
+            </LinearLayout>
+            <Spinner
+                android:id="@+id/spinnerCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp" />
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefresh"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recyclerViewProducts"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:clipToPadding="false"-->
+<!--                    android:padding="4dp"/>-->
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <Button
+                android:id="@+id/btnLoadMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="โหลดเพิ่มเติม" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/cream"
+                android:paddingVertical="6dp">
+                <Button
+                    android:id="@+id/btnNavHome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="หน้าแรก"/>
+                <Button
+                    android:id="@+id/btnNavCart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ตะกร้า"/>
+                <Button
+                    android:id="@+id/btnNavOrders"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="คำสั่งซื้อ"/>
+                <Button
+                    android:id="@+id/btnNavProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="โปรไฟล์"/>
+            </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
 
 </FrameLayout>

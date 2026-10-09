@@ -15,7 +15,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/customerBottomNavigationView"
+        android:id="@+id/bottomNavigationView"
         android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,14 +24,4 @@
         app:itemIconTint="@color/muted"
         app:itemTextColor="@color/muted"
         app:menu="@menu/bottom_nav_customer_menu"/>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/adminBottomNavigationView"
-        android:visibility="visible"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:animateLayoutChanges="false"
-        app:backgroundTint="@color/transparent"
-        app:itemIconTint="@color/muted"
-        app:itemTextColor="@color/muted"
-        app:menu="@menu/bottom_nav_admin_menu"/>
 </LinearLayout>

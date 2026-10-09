@@ -5,6 +5,9 @@
     <string name="title_log_in_page_en">Log in to your account.</string>
     <string name="sub_title_log_in_page_en">Please Log in to your account.</string>
     <string name="title_user_name_en">User Name</string>
+    <string name="title_phone_en">Phone Number</string>
+    <string name="hint_enter_phone_en">Enter your phone number</string>
+    <string name="warning_enter_your_phone_en">Please enter your phone.</string>
     <string name="warning_enter_username_en">Please enter your username.</string>
     <string name="warning_verify_your_username_en">Please verify your username.</string>
     <string name="hint_enter_username_en">Enter your username</string>
@@ -108,6 +111,7 @@
     <string name="add_success_en">Add Product Success.</string>
     <string name="add_fail_en">Add Fail, Please Check Again.</string>
     <string name="order_en">ORDER.</string>
+    <string name="load_more_en">Load more...</string>
 
     <string name="edit_en">EDIT</string>
     <string name="shopping_cart_en">SHOPPING CART</string>

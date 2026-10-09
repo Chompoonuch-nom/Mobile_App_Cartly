@@ -60,6 +60,9 @@ public class UserDao {
         this.last_name = last_name;
     }
 
+    public String getFull_name() {
+        return first_name + " " + last_name;
+    }
     public String getEmail() {
         return email;
     }
@@ -92,6 +95,9 @@ public class UserDao {
         this.user_role = user_role;
     }
 
+    public boolean isAdmin() {
+        return "ADMIN".equalsIgnoreCase(user_role);
+    }
     public String getCreated_at() {
         return created_at;
     }

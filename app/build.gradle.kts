@@ -62,4 +62,10 @@ dependencies {
 //    RxJava 3 + RxAndroid 3 (เวอร์ชันปัจจุบัน)
     implementation(libs.rxjava)
     implementation(libs.rxandroid)
+
+//    Glide
+    implementation(libs.glide)
+
+//    swiperefreshlayout: 1.2.0
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0")
 }

@@ -15,6 +15,10 @@ import androidx.core.splashscreen.SplashScreen;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.cartly.ApiService.AuthApiService;
+import com.example.cartly.RequestDao.RegisterRequestDao;
+import com.example.cartly.ResponseDao.AuthResponseDao;
+import com.example.cartly.Util.ApiCallback;
 import com.example.cartly.databinding.ActivitySignUpBinding;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -24,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     private boolean privacy = false;
 
     private ActivitySignUpBinding signUpBinding;
+    private final AuthApiService authApiService = new AuthApiService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +52,11 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void initComponent() {
-        login();
-        signUp();
+        doLogin();
+        doSignUp();
     }
 
-    private void login() {
+    private void doLogin() {
         signUpBinding.tvBtnLogin.setOnClickListener(view -> {
             Intent intentLogin = new Intent(SignUpActivity.this, LoginActivity.class);
             startActivity(intentLogin);
@@ -59,7 +64,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private void signUp() {
+    private void doSignUp() {
         signUpBinding.mvBtnOpenPassword.setOnClickListener(view -> {
             if (isPasswordVisibility) {
                 //Close Password
@@ -96,6 +101,7 @@ public class SignUpActivity extends AppCompatActivity {
             String first_name = signUpBinding.edtEnterFirstName.getText().toString().trim();
             String last_name = signUpBinding.edtEnterLastName.getText().toString().trim();
             String username = signUpBinding.edtEnterUsername.getText().toString().trim();
+            String phone = signUpBinding.edtEnterPhone.getText().toString().trim();
             String password = signUpBinding.edtEnterPassword.getText().toString().trim();
             String re_password = signUpBinding.edtReEnterPassword.getText().toString().trim();
 
@@ -131,6 +137,14 @@ public class SignUpActivity extends AppCompatActivity {
                 signUpBinding.warningUsernameLayout.setVisibility(View.GONE);
             }
 
+            // Check Phone
+            if (phone.isEmpty()) {
+                signUpBinding.warningPhoneLayout.setVisibility(View.VISIBLE);
+                signUpBinding.edtEnterPhone.requestFocus();
+            } else {
+                signUpBinding.warningPhoneLayout.setVisibility(View.GONE);
+            }
+
             // Check Password
             if (password.isEmpty()) {
                 signUpBinding.warningPasswordLayout.setVisibility(View.VISIBLE);
@@ -155,18 +169,36 @@ public class SignUpActivity extends AppCompatActivity {
             }
 
             if (!email.isEmpty() && !first_name.isEmpty() && !last_name.isEmpty()
-                    && !username.isEmpty() && !password.isEmpty()
-                    && !re_password.isEmpty() && privacy) {
+                    && !username.isEmpty() && !phone.isEmpty()
+                    && !password.isEmpty() && !re_password.isEmpty() && privacy) {
                 if (password.equals(re_password)) {
                     signUpBinding.alertSignUpLayout.setVisibility(View.VISIBLE);
-                    signUpBinding.alertSignUp.progressBar.setVisibility(View.GONE);
-                    signUpBinding.alertSignUp.alertSignUpSuccess.setVisibility(View.VISIBLE);
-                    signUpBinding.alertSignUp.alertSignUpFailed.setVisibility(View.GONE);
-                } else {
-                    signUpBinding.alertSignUpLayout.setVisibility(View.VISIBLE);
-                    signUpBinding.alertSignUp.progressBar.setVisibility(View.GONE);
+                    signUpBinding.alertSignUp.progressBar.setVisibility(View.VISIBLE);
                     signUpBinding.alertSignUp.alertSignUpSuccess.setVisibility(View.GONE);
-                    signUpBinding.alertSignUp.alertSignUpFailed.setVisibility(View.VISIBLE);
+                    signUpBinding.alertSignUp.alertSignUpFailed.setVisibility(View.GONE);
+                    alertSignUpStatus(true);
+
+                    // เรียก POST /api/auth/register ผ่าน AuthApiService
+                    RegisterRequestDao request = new RegisterRequestDao(
+                            username, first_name, last_name, email, password, phone.isEmpty() ? null : phone
+                    );
+                    authApiService.register(request, new ApiCallback<AuthResponseDao>() {
+                        @Override
+                        public void onSuccess(AuthResponseDao data, String message) {
+                            if (isFinishing() || isDestroyed()) return;
+                            alertSignUpStatus(true);
+                            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                            finish();
+                        }
+
+                        @Override
+                        public void onError(String message, int httpCode) {
+                            if (isFinishing() || isDestroyed()) return;
+                            alertSignUpStatus(false);
+                        }
+                    });
+                } else {
+                    alertSignUpStatus(false);
                 }
             } else {
                 signUpBinding.alertSignUpLayout.setVisibility(View.GONE);
@@ -185,5 +217,19 @@ public class SignUpActivity extends AppCompatActivity {
             startActivity(intentLogIn);
             finish();
         });
+    }
+
+    private void alertSignUpStatus (boolean alertStatus) {
+        if (alertStatus) {
+            signUpBinding.alertSignUpLayout.setVisibility(View.VISIBLE);
+            signUpBinding.alertSignUp.progressBar.setVisibility(View.GONE);
+            signUpBinding.alertSignUp.alertSignUpSuccess.setVisibility(View.VISIBLE);
+            signUpBinding.alertSignUp.alertSignUpFailed.setVisibility(View.GONE);
+        } else {
+            signUpBinding.alertSignUpLayout.setVisibility(View.VISIBLE);
+            signUpBinding.alertSignUp.progressBar.setVisibility(View.GONE);
+            signUpBinding.alertSignUp.alertSignUpSuccess.setVisibility(View.GONE);
+            signUpBinding.alertSignUp.alertSignUpFailed.setVisibility(View.VISIBLE);
+        }
     }
 }

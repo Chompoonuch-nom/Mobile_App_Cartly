@@ -32,12 +32,14 @@ import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 
+/**
+ * เรียก POST /api/auth/login ผ่าน AuthApiService
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding loginBinding;
     private boolean isPasswordVisible = false;
     private Boolean user = null;
-    private boolean alertStatus = true;
     private final int STATUS_LOADING = 0;
     private final int STATUS_SUCCESS = 1;
     private final int STATUS_FAILED = 2;
@@ -106,7 +108,6 @@ public class LoginActivity extends AppCompatActivity {
 
             String email = loginBinding.edtEnterEmail.getText().toString();
             String password = loginBinding.edtEnterPassword.getText().toString();
-            LoginRequestDao loginRequest = new LoginRequestDao(email, password);
 
             loginBinding.tvWarningUserName.setText(R.string.warning_enter_email_en);
             loginBinding.tvWarningPassword.setText(R.string.warning_enter_password_en);
@@ -129,17 +130,11 @@ public class LoginActivity extends AppCompatActivity {
                     public void onSuccess(AuthResponseDao data, String message) {
                         if (isFinishing() || isDestroyed()) return;
                         alertLoginStatus(true);
-                        String token = data.getToken();
-                        // token ถูกบันทึกลง TokenManager โดย AuthApiService แล้ว
-                        getSharedPreferences("cartly_prefs", MODE_PRIVATE)
-                                .edit()
-                                .putString("jwt_token", token)
-                                .apply();
 
                         loginBinding.alertLogin.btnLetsEnjoyLayout.setOnClickListener(v -> {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            intent.putExtra("User", user);
                             startActivity(intent);
+                            finish();
                         });
                     }
 
@@ -150,20 +145,6 @@ public class LoginActivity extends AppCompatActivity {
                         Log.e("API_ERROR", "Error: "+ message);
                     }
                 });
-
-//                if (username.equals(user_name) && password.equals(pass)) {
-//                    user = true;
-//                    alertStatus = true;
-//                    checkLoginStatus(user, alertStatus);
-//
-//                } else if (username.equals(admin_name) && password.equals(admin_pass)) {
-//                    user = false;
-//                    alertStatus = true;
-//                    checkLoginStatus(user, alertStatus);
-//                } else {
-//                    alertStatus = false;
-//                    checkLoginStatus(user, alertStatus);
-//                }
             } else {
                 if (email.isEmpty() && password.isEmpty()) {
                     loginBinding.warningEmailLayout.setVisibility(View.VISIBLE);
@@ -186,9 +167,8 @@ public class LoginActivity extends AppCompatActivity {
             loginBinding.alertLogin.alertLogInSuccessfully.setVisibility(View.VISIBLE);
             loginBinding.alertLogin.alertLogInFailed.setVisibility(View.GONE);
             loginBinding.alertLogin.btnLetsEnjoyLayout.setOnClickListener(v -> {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                intent.putExtra("User", user);
-                startActivity(intent);
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
             });
         } else {
             loginBinding.alertLogin.progressBarAlertLogin.setVisibility(View.GONE);
@@ -207,10 +187,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void signUp() {
         loginBinding.btnSignUp.setOnClickListener(view -> {
-            Toast.makeText(LoginActivity.this,R.string.sign_up_en,Toast.LENGTH_LONG).show();
-
-            Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
-            startActivity(intent);
+//            Toast.makeText(LoginActivity.this,R.string.sign_up_en,Toast.LENGTH_LONG).show();
+            startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+            finish();
         });
     }
 }

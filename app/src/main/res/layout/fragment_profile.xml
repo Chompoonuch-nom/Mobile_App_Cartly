@@ -69,7 +69,8 @@
                     android:text="Firstname   Lastname"
                     android:textAlignment="center"
                     android:layout_centerHorizontal="true"
-                    android:textSize="14sp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="20sp"
                     android:lines="1"
                     android:ellipsize="end"
                     android:textStyle="bold"
@@ -77,11 +78,11 @@
                     android:fontFamily="@font/adlamdisplay_regular"
                     tools:ignore="HardcodedText" />
                 <TextView
-                    android:id="@+id/tvProfileEmail"
+                    android:id="@+id/tvProfileUsername"
                     android:layout_below="@+id/tvProfileFullName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test@gmail.com"
+                    android:text="username"
                     android:layout_centerHorizontal="true"
                     android:textSize="14sp"
                     android:lines="1"
@@ -89,6 +90,130 @@
                     android:textColor="@color/muted"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:layout_marginTop="0dp"
+                    android:layout_marginBottom="2dp"
+                    tools:ignore="HardcodedText" />
+                <TextView
+                    android:id="@+id/tvProfileRoleBadge"
+                    android:layout_below="@+id/tvProfileUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ADMIN"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="14sp"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:textStyle="bold"
+                    android:textColor="@color/muted"
+                    android:fontFamily="@font/adlamdisplay_regular"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="10dp"
+                    tools:ignore="HardcodedText" />
+                <View
+                    android:id="@+id/view"
+                    android:layout_below="@+id/tvProfileRoleBadge"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="16dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/separator"/>
+
+                <TextView
+                    android:id="@+id/tvProfileEmailTitle"
+                    android:layout_below="@+id/view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email : "
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="false"
+                    android:textSize="14sp"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/muted"
+                    android:fontFamily="@font/adlamdisplay_regular"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginHorizontal="20dp"
+                    tools:ignore="HardcodedText" />
+                <TextView
+                    android:id="@+id/tvProfileEmail"
+                    android:layout_below="@+id/view"
+                    android:layout_toRightOf="@+id/tvProfileEmailTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="test@gmail.com"
+                    android:layout_centerHorizontal="false"
+                    android:textSize="14sp"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/muted"
+                    android:fontFamily="@font/adlamdisplay_regular"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="2dp"
+                    tools:ignore="HardcodedText" />
+                <TextView
+                    android:id="@+id/tvProfilePhoneTitle"
+                    android:layout_below="@+id/tvProfileEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tel : "
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="false"
+                    android:textSize="14sp"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/muted"
+                    android:fontFamily="@font/adlamdisplay_regular"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginHorizontal="20dp"
+                    tools:ignore="HardcodedText" />
+                <TextView
+                    android:id="@+id/tvProfilePhone"
+                    android:layout_below="@+id/tvProfileEmail"
+                    android:layout_toRightOf="@+id/tvProfilePhoneTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="09xxxxxxxx"
+                    android:layout_centerHorizontal="false"
+                    android:textSize="14sp"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/muted"
+                    android:fontFamily="@font/adlamdisplay_regular"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="2dp"
+                    tools:ignore="HardcodedText" />
+                <TextView
+                    android:id="@+id/tvProfileMemberSinceTitle"
+                    android:layout_below="@+id/tvProfilePhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="เป็นสมาชิกตั้งแต่ : "
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="false"
+                    android:textSize="14sp"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/muted"
+                    android:fontFamily="@font/adlamdisplay_regular"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    tools:ignore="HardcodedText" />
+                <TextView
+                    android:id="@+id/tvProfileMemberSince"
+                    android:layout_below="@+id/tvProfilePhone"
+                    android:layout_toRightOf="@+id/tvProfileMemberSinceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="member since"
+                    android:layout_centerHorizontal="false"
+                    android:textSize="14sp"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/muted"
+                    android:fontFamily="@font/adlamdisplay_regular"
+                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="10dp"
                     tools:ignore="HardcodedText" />
             </RelativeLayout>
@@ -153,6 +278,7 @@
                     </RelativeLayout>
                     <RelativeLayout
                         android:id="@+id/btnSettingsLayout"
+                        android:visibility="gone"
                         android:layout_below="@+id/btnPersonalDataLayout"
                         android:layout_width="match_parent"
                         android:layout_height="44dp"
@@ -188,8 +314,117 @@
                             tools:ignore="ContentDescription" />
                     </RelativeLayout>
                     <RelativeLayout
-                        android:id="@+id/btnExtraCardLayout"
+                        android:id="@+id/btnMyOrderLayout"
                         android:layout_below="@+id/btnSettingsLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:id="@+id/mvMyOrder"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/shopping_cart_24"
+                            android:layout_centerVertical="true"
+                            app:tint="@color/muted"
+                            tools:ignore="ContentDescription" />
+                        <TextView
+                            android:id="@+id/tvMyOrder"
+                            android:layout_toEndOf="@+id/mvMyOrder"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="ประวัติคำสั่งซื้อของฉัน"
+                            android:textSize="14sp"
+                            android:textColor="@color/muted"
+                            android:fontFamily="@font/adlamdisplay_regular"
+                            android:layout_marginStart="20dp"
+                            tools:ignore="RelativeOverlap" />
+                        <ImageView
+                            android:id="@+id/btnMyOrder"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/icon_arrow_next"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            app:tint="@color/muted"
+                            tools:ignore="ContentDescription" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/btnMyAddressesLayout"
+                        android:layout_below="@+id/btnMyOrderLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:id="@+id/mvMyAddresses"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/cottage_24"
+                            android:layout_centerVertical="true"
+                            app:tint="@color/muted"
+                            tools:ignore="ContentDescription" />
+                        <TextView
+                            android:id="@+id/tvMyAddresses"
+                            android:layout_toEndOf="@+id/mvMyAddresses"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="ที่อยู่จัดส่งของฉัน"
+                            android:textSize="14sp"
+                            android:textColor="@color/muted"
+                            android:fontFamily="@font/adlamdisplay_regular"
+                            android:layout_marginStart="20dp"
+                            tools:ignore="RelativeOverlap" />
+                        <ImageView
+                            android:id="@+id/btnMyAddresses"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/icon_arrow_next"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            app:tint="@color/muted"
+                            tools:ignore="ContentDescription" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/btnManageCategoriesLayout"
+                        android:layout_below="@+id/btnMyAddressesLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:id="@+id/mvManageCategories"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/icon_category_search_24"
+                            android:layout_centerVertical="true"
+                            app:tint="@color/muted"
+                            tools:ignore="ContentDescription" />
+                        <TextView
+                            android:id="@+id/tvManageCategories"
+                            android:layout_toEndOf="@+id/mvManageCategories"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="จัดการหมวดหมู่ (admin)"
+                            android:textSize="14sp"
+                            android:textColor="@color/muted"
+                            android:fontFamily="@font/adlamdisplay_regular"
+                            android:layout_marginStart="20dp"
+                            tools:ignore="RelativeOverlap" />
+                        <ImageView
+                            android:id="@+id/btnManageCategories"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/icon_arrow_next"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            app:tint="@color/muted"
+                            tools:ignore="ContentDescription" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/btnExtraCardLayout"
+                        android:visibility="visible"
+                        android:layout_below="@+id/btnManageCategoriesLayout"
                         android:layout_width="match_parent"
                         android:layout_height="44dp"
                         android:layout_marginBottom="10dp">

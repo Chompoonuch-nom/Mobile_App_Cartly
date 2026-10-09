@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:name=".CartlyApplication"
         android:allowBackup="true"
         android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,17 +16,17 @@
         android:theme="@style/Theme.Cartly.Splash">
         <activity
             android:name=".MainActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity
-            android:name=".LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize" >
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SignUpActivity"
             android:exported="false"
