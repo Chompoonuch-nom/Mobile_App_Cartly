@@ -1,14 +1,13 @@
 package com.example.cartly.Adapter;
 
-import android.content.Context;
-import android.location.GnssAntennaInfo;
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.cartly.Interface.OnClickItemListenerInterface;
-import com.example.cartly.Interface.OnClickProductSelectInterface;
+
+import com.bumptech.glide.Glide;
 import com.example.cartly.R;
 import com.example.cartly.ResponseDao.ProductDao;
 import com.example.cartly.databinding.ItemProductBinding;
@@ -25,10 +24,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         void onEditClick(ProductDao product);
         void onDeleteClick(ProductDao product);
     }
-    private Context context;
-//    private OnClickProductSelectInterface onClick;
-//    private ArrayList<ProductDao> itemProduct;
-
     private final List<ProductDao> items = new ArrayList<>();
     private final Listener listener;
     private final boolean showAdminAction;
@@ -48,10 +43,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         items.addAll(more);
         notifyItemRangeChanged(start, more.size());
     }
-
-//    public void setOnClickProductSelectInterface (OnClickProductSelectInterface onClick) {
-//        this.onClick = onClick;
-//    }
     @NonNull
     @Override
     public ProductAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -59,36 +50,33 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         return new ViewHolder(binding);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.ViewHolder holder, int position) {
-        ProductDao item_product = items.get(position);
-//        holder.binding.mvProduct.setImageResource(item_product.image);
-//        holder.binding.tvNameProduct.setText(item_product.product_name);
-//        holder.binding.tvDetailProduct.setText(item_product.product_detail);
-//        holder.binding.tvPriceProduct.setText(item_product.product_price);
-//
-//        holder.binding.mvAddToCart.setOnClickListener(view -> {
-//            onClick.onCreateClick(position);
-//        });
-//
-//        holder.itemView.setOnClickListener(view -> {
-//            if (onClick != null) {
-//                onClick.onItemClick(position);
-//            }
-//        });
+        ProductDao product = items.get(position);
+        holder.binding.tvNameProduct.setText(product.getProduct_name());
+        holder.binding.tvPriceProduct.setText("฿" + product.getPrice().toPlainString());
+        holder.binding.tvStockProduct.setText("คงเหลือ: " + product.getStock_qty());
 
-        holder.binding.tvNameProduct.setText(item_product.getProduct_name());
-        holder.binding.tvDetailProduct.setText(item_product.getProduct_descp());
-        holder.binding.tvPriceProduct.setText("฿" + item_product.getPrice().toPlainString());
-        holder.binding.tvStockProduct.setText("คงเหลือ: " + item_product.getStock_qty());
-//        holder.binding.mvProduct.setImageResource(R.drawable.add_photo_24); // ใส่ Glide/Picasso โหลด item_product.getPrimaryImageUrl() แทนได้
+        String imageUrl = product.getPrimaryImageURL();
+        if (imageUrl == null || imageUrl.isEmpty()) {
+            // กันรูปเก่าค้างตอน view ถูก recycle
+            Glide.with(holder.binding.mvProduct).clear(holder.binding.mvProduct);
+            holder.binding.mvProduct.setImageResource(R.drawable.icon_imagesmode_24);
+        } else {
+            Glide.with(holder.binding.mvProduct)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.icon_imagesmode_24)
+                    .error(R.drawable.icon_imagesmode_24)
+                    .centerCrop()
+                    .into(holder.binding.mvProduct);
+        }
 
-        holder.itemView.setOnClickListener(view -> listener.onProductClick(item_product));
-
+        holder.itemView.setOnClickListener(view -> listener.onProductClick(product));
         if (showAdminAction) {
             holder.binding.adminActionLayout.setVisibility(View.VISIBLE);
-            holder.binding.mvBtnEditProduct.setOnClickListener(view -> listener.onEditClick(item_product));
-            holder.binding.mvBtnDeleteProduct.setOnClickListener(view -> listener.onDeleteClick(item_product));
+            holder.binding.mvBtnEditProduct.setOnClickListener(view -> listener.onEditClick(product));
+            holder.binding.mvBtnDeleteProduct.setOnClickListener(view -> listener.onDeleteClick(product));
         } else {
             holder.binding.adminActionLayout.setVisibility(View.GONE);
         }
@@ -100,7 +88,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ItemProductBinding binding;
+        final ItemProductBinding binding;
         public ViewHolder(@NonNull ItemProductBinding binding) {
             super(binding.getRoot());
             this.binding = binding;

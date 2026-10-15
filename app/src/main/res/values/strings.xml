@@ -81,6 +81,7 @@
     <string name="market_title_en">FIND PRODUCTS.</string>
     <string name="description_title_en">Description</string>
     <string name="add_to_cart_en">Add to Cart</string>
+    <string name="add_to_cart_th">เพิ่มลงในตระกร้า</string>
     <string name="my_product_en">My Product</string>
     <string name="see_all_en">See All</string>
     <string name="my_order_en">My Order</string>
@@ -91,6 +92,11 @@
     <string name="hot_sale_en">HOT SALE</string>
     <string name="find_by_category_en">FIND BY CATEGORY</string>
     <string name="update_status_order_en">Update Status Order</string>
+    <string name="review_product_title_th">รีวิวสินค้า</string>
+    <string name="rate_product_title_th">ให้คะแนนสินค้านี้</string>
+    <string name="edt_comment_review_hint_th">เขียนรีวิว (ไม่บังคับ)</string>
+    <string name="submit_review_th">ส่งรีวิว</string>
+    <string name="delete_review_th">ลบรีวิวนี้</string>
 
     <!--    Add Product Group -->
     <string name="product_name_en">Product Name</string>
@@ -111,7 +117,19 @@
     <string name="add_success_en">Add Product Success.</string>
     <string name="add_fail_en">Add Fail, Please Check Again.</string>
     <string name="order_en">ORDER.</string>
-    <string name="load_more_en">Load more...</string>
+    <string name="load_more_en">Load more</string>
+
+    <string name="add_new_product_th">เพิ่มสินค้าใหม่</string>
+    <string name="product_name_th">ชื่อสินค้า</string>
+    <string name="product_detail_th">รายละเอียดสินค้า</string>
+    <string name="price_th">ราคา</string>
+    <string name="stock_qty_th">จำนวนคงเหลือ</string>
+    <string name="category_th">หมวดหมู่</string>
+    <string name="save_th">บันทึก</string>
+    <string name="image_product_th">รูปภาพสินค้า</string>
+    <string name="hint_image_url_th">URL รูปภาพ (https://...)</string>
+    <string name="check_is_primary_picture_th">ตั้งเป็นรูปหลัก (primary)</string>
+    <string name="add_image_th">เพิ่มรูปภาพ</string>
 
     <string name="edit_en">EDIT</string>
     <string name="shopping_cart_en">SHOPPING CART</string>

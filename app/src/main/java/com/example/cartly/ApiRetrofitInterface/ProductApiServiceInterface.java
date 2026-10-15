@@ -23,7 +23,7 @@ public interface ProductApiServiceInterface {
             @Query("category_id") Long categoryId,
             @Query("keyword") String keyword);
 
-    @GET("api/products,{id}")
+    @GET("api/products/{id}")
     Call<ApiResponseDao<ProductDao>> getById(@Path("id") long productId);
 
     // ---ADMIN

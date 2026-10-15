@@ -32,38 +32,11 @@
                     android:scaleType="centerCrop"
                     android:background="@color/transparent"
                     android:contentDescription="@null" />
-
-                <RelativeLayout
-                    android:id="@+id/adminActionLayout"
-                    android:visibility="visible"
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/mvBtnEditProduct"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_toLeftOf="@+id/mvBtnDeleteProduct"
-                        android:src="@drawable/icon_edit_square_24"
-                        android:tint="@color/border"
-                        android:layout_marginTop="10dp"
-                        tools:ignore="ContentDescription" />
-                    <ImageView
-                        android:id="@+id/mvBtnDeleteProduct"
-                        android:layout_alignBaseline="@id/mvBtnEditProduct"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_alignParentEnd="true"
-                        android:src="@drawable/icon_delete_24"
-                        android:tint="@color/border"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        tools:ignore="ContentDescription" />
-                </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>
         <TextView
             android:id="@+id/tvHotSale"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hot_sale_en"
@@ -83,6 +56,29 @@
             android:padding="4dp"
             android:layout_alignParentBottom="false"
             android:background="@drawable/bg_card">
+            <RelativeLayout
+                android:id="@+id/adminActionLayout"
+                android:visibility="visible"
+                android:layout_below="@+id/tvStockProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/mvBtnEditProduct"
+                    android:layout_toEndOf="@+id/mvBtnDeleteProduct"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/icon_edit_square_24"
+                    app:tint="@color/butter"
+                    tools:ignore="ContentDescription" />
+                <ImageView
+                    android:id="@+id/mvBtnDeleteProduct"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/icon_delete_24"
+                    app:tint="@color/coral"
+                    tools:ignore="ContentDescription" />
+            </RelativeLayout>
             <TextView
                 android:id="@+id/tvNameProduct"
                 android:layout_width="wrap_content"
@@ -117,11 +113,11 @@
             <TextView
                 android:id="@+id/tvPriceProduct"
                 android:layout_below="@+id/tvDetailProduct"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="$1.99"
-                android:textSize="10sp"
-                android:textColor="@color/muted"
+                android:textSize="12sp"
+                android:textColor="@color/green_brand"
                 android:fontFamily="@font/adlamdisplay_regular"
                 android:layout_marginVertical="4dp"
                 android:paddingHorizontal="10dp"
@@ -145,10 +141,9 @@
                 android:shadowRadius="12"/>
             <TextView
                 android:id="@+id/tvStockProduct"
-                android:layout_below="@+id/tvDetailProduct"
+                android:layout_below="@+id/tvPriceProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/tvPriceProduct"
                 android:layout_alignParentEnd="true"
                 android:text="100"
                 android:textSize="10sp"
@@ -171,68 +166,3 @@
     </RelativeLayout>
 
 </LinearLayout>
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:orientation="vertical"-->
-<!--    android:background="@android:color/white"-->
-<!--    android:padding="10dp"-->
-<!--    android:layout_margin="4dp"-->
-<!--    android:elevation="2dp">-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/ivProduct"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="120dp"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        android:background="@color/cream"-->
-<!--        android:contentDescription="@null" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvProductName"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="6dp"-->
-<!--        android:maxLines="2"-->
-<!--        android:text="tvProductName"-->
-<!--        android:ellipsize="end"-->
-<!--        android:textStyle="bold" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvProductPrice"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textColor="@color/ink"-->
-<!--        android:text="tvProductPrice"/>-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvProductStock"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textColor="@color/ink"-->
-<!--        android:textSize="12sp"-->
-<!--        android:text="tvProductStock"/>-->
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/layoutAdminActions"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:visibility="gone">-->
-
-<!--        <Button-->
-<!--            android:id="@+id/btnEditProduct"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:text="แก้ไข"-->
-<!--            android:textSize="11sp" />-->
-<!--        <Button-->
-<!--            android:id="@+id/btnDeleteProduct"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:text="ลบ"-->
-<!--            android:textSize="11sp" />-->
-<!--    </LinearLayout>-->
-<!--</LinearLayout>-->

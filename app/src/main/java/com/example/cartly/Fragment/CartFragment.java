@@ -2,81 +2,138 @@ package com.example.cartly.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.example.cartly.Adapter.CartShoppingAdapter;
-import com.example.cartly.Dao.CartDao;
-import com.example.cartly.Dao.StoreDao;
-import com.example.cartly.Model.CartShoppingModel;
-import com.example.cartly.ProductDetailActivity;
+import com.example.cartly.Adapter.CartItemAdapter;
+import com.example.cartly.ApiService.CartApiService;
+import com.example.cartly.CheckoutActivity;
+import com.example.cartly.MainActivity;
+import com.example.cartly.ResponseDao.CartDao;
+import com.example.cartly.ResponseDao.CartItemDao;
+import com.example.cartly.Util.ApiCallHandler;
+import com.example.cartly.Util.ApiCallback;
 import com.example.cartly.databinding.FragmentCartBinding;
 
-import java.util.ArrayList;
-
+/**
+ * ตะกร้าสินค้า — GET/PUT/DELETE /api/cart, /api/cart/items/{id}
+ */
 public class CartFragment extends Fragment {
-    private FragmentCartBinding fragmentCartBinding;
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private final CartApiService cartApiService = new CartApiService();
+    private FragmentCartBinding binding;
+    private CartItemAdapter cartItemAdapter;
 
-    private String mParam1;
-    private String mParam2;
-
-    public CartFragment() {
-        // Required empty public constructor
-    }
-    public static CartFragment newInstance(String param1, String param2) {
-        CartFragment fragment = new CartFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    /** callback ร่วมของ โหลดตะกร้า / เปลี่ยนจำนวน / ลบรายการ — ผลลัพธ์เป็น Cart ล่าสุดเหมือนกันหมด */
+    private final ApiCallback<CartDao> renderCallback = new ApiCallback<CartDao>() {
+        @Override
+        public void onSuccess(CartDao data, String message) {
+            if (binding == null) return;
+            renderCart(data);
         }
-    }
+
+        @Override
+        public void onError(String message, int httpCode) {
+            handleError(message, httpCode);
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        fragmentCartBinding = FragmentCartBinding.inflate(getLayoutInflater());
-        View view = fragmentCartBinding.getRoot();
-
-        initComponent();
-        return view;
+        binding = FragmentCartBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
-    private void initComponent() {
-        setCartShopping();
-        setComponent();
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        binding.recyclerCart.setLayoutManager(new LinearLayoutManager(requireContext()));
+        cartItemAdapter = new CartItemAdapter(new CartItemAdapter.Listener() {
+            @Override
+            public void onIncrease(CartItemDao item) {
+                cartApiService.updateItemQuantity(item.getCart_item_id(), item.getQuantity() + 1, renderCallback);
+            }
+
+            @Override
+            public void onDecrease(CartItemDao item) {
+                // <= 0 -> backend จะลบรายการให้เอง
+                cartApiService.updateItemQuantity(item.getCart_item_id(), item.getQuantity() - 1, renderCallback);
+            }
+
+            @Override
+            public void onRemove(CartItemDao item) {
+                cartApiService.removeItem(item.getCart_item_id(), renderCallback);
+            }
+        });
+        binding.recyclerCart.setAdapter(cartItemAdapter);
+
+        binding.btnClearCart.setOnClickListener(v-> clearCart());
+        binding.btnCheckoutCart.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), CheckoutActivity.class)));
     }
-    private void setCartShopping() {
-        CartDao carts = CartShoppingModel.getCartShopping();
-        ArrayList<StoreDao> stores = CartShoppingModel.getCartShopping().getStores();
-        fragmentCartBinding.tvTotal.setText(String.valueOf(carts.getTotal()));
 
-        fragmentCartBinding.recyclerViewCart.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        CartShoppingAdapter adapter = new CartShoppingAdapter(getContext(), stores);
-        fragmentCartBinding.recyclerViewCart.setAdapter(adapter);
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isHidden()) loadCart(); // กลับมาจากหน้า checkout / หน้าสินค้า
+    }
 
-        fragmentCartBinding.btnCheckOutLayout.setOnClickListener(view -> {
-            Intent intent = new Intent(getContext(), ProductDetailActivity.class);
-            startActivity(intent);
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) loadCart(); // สลับ tab มาที่ตะกร้า -> โหลดข้อมูลล่าสุด
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
+    private void loadCart() {
+        cartApiService.getMyCart(renderCallback);
+    }
+
+    private void renderCart(CartDao cart) {
+        cartItemAdapter.setItems(cart.getItems());
+        boolean empty = cart.getItems() == null || cart.getItems().isEmpty();
+        binding.tvEmptyCart.setVisibility(empty ? View.VISIBLE : View.GONE);
+        binding.recyclerCart.setVisibility(empty ? View.GONE : View.VISIBLE);
+        binding.tvCartTotal.setText("ยอดรวม: ฿" + cart.getTotalAmount().toPlainString());
+    }
+
+    private void clearCart() {
+        cartApiService.clearCart(new ApiCallback<Object>() {
+            @Override
+            public void onSuccess(Object data, String message) {
+                if (binding == null) return;
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+                loadCart();
+            }
+
+            @Override
+            public void onError(String message, int httpCode) {
+                handleError(message, httpCode);
+            }
         });
     }
 
-    private void setComponent() {
-
+    private void handleError(String message, int httpCode) {
+        if (binding == null) return;
+        if (httpCode == ApiCallHandler.UNAUTHORIZE) {
+            ((MainActivity) requireActivity()).onSessionExpire();
+            return;
+        }
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

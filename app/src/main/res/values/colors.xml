@@ -24,6 +24,8 @@
     <color name="purple_01">#FF6200EE</color>
     <color name="purple_02">#FF3700B3</color>
     <color name="purple_lavender">#8692f7</color>
+    <color name="light_purple">#e6e1f9</color>
+    <color name="light_purple_00">#d5cdf3</color>
 
 <!--    green group color -->
     <color name="green_00">#FF03DAC5</color>
@@ -35,6 +37,8 @@
     <color name="gray_00">#C6D0DC</color>
     <color name="gray_01">#929AB7</color>
     <color name="gray_02">#EFF0F3</color>
+    <color name="gray_platinum">#E5E4E2</color>
+    <color name="gray_f6">#f6f6f6</color>
 
 <!--    yellow group color -->
     <color name="yellow">#FE8C00</color>

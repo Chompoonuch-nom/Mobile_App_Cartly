@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cream"
+    android:background="@color/gray_f6"
     tools:context=".Fragment.ProfileFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@color/transparent"
         tools:ignore="UselessParent">
 
         <RelativeLayout
@@ -21,13 +22,15 @@
                 android:id="@+id/topLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_card">
+                android:layout_marginBottom="20dp"
+                android:elevation="20dp"
+                android:background="@drawable/bg_top_shape">
 
                 <RelativeLayout
                     android:id="@+id/avatarLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:layout_centerHorizontal="true">
 
                     <ImageView
@@ -37,7 +40,6 @@
                         android:layout_centerInParent="true"
                         android:scaleType="centerCrop"
                         android:src="@drawable/account_circle_24"
-                        app:tint="@color/muted"
                         tools:ignore="ContentDescription" />
                     <ImageView
                         android:id="@+id/mvBtnCamera"
@@ -51,30 +53,48 @@
                         tools:ignore="ContentDescription" />
                 </RelativeLayout>
                 <TextView
+                    android:id="@+id/tvProfileRoleBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/bg_sage"
+                    android:elevation="1dp"
+                    android:padding="10dp"
+                    android:text="ผู้ดูแลระบบ"
+                    android:textSize="12sp"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:textStyle="normal"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/adlamdisplay_regular"
+                    tools:ignore="HardcodedText" />
+                <TextView
                     android:id="@+id/tvVersion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:text="@string/version_en"
                     android:textSize="12sp"
+                    android:textStyle="normal"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:layout_alignParentEnd="true"
                     android:layout_margin="8dp"
-                    android:textColor="@color/muted"
+                    android:textColor="@color/black"
                     tools:ignore="RelativeOverlap" />
                 <TextView
                     android:id="@+id/tvProfileFullName"
                     android:layout_below="@+id/avatarLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Firstname   Lastname"
+                    android:text="Null"
                     android:textAlignment="center"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="8dp"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:lines="1"
                     android:ellipsize="end"
                     android:textStyle="bold"
-                    android:textColor="@color/ink"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/adlamdisplay_regular"
                     tools:ignore="HardcodedText" />
                 <TextView
@@ -82,40 +102,25 @@
                     android:layout_below="@+id/tvProfileFullName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="username"
+                    android:text="Null"
                     android:layout_centerHorizontal="true"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:lines="1"
                     android:ellipsize="end"
-                    android:textColor="@color/muted"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:layout_marginTop="0dp"
                     android:layout_marginBottom="2dp"
                     tools:ignore="HardcodedText" />
-                <TextView
-                    android:id="@+id/tvProfileRoleBadge"
-                    android:layout_below="@+id/tvProfileUsername"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ADMIN"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="14sp"
-                    android:lines="1"
-                    android:ellipsize="end"
-                    android:textStyle="bold"
-                    android:textColor="@color/muted"
-                    android:fontFamily="@font/adlamdisplay_regular"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="10dp"
-                    tools:ignore="HardcodedText" />
+
                 <View
                     android:id="@+id/view"
-                    android:layout_below="@+id/tvProfileRoleBadge"
+                    android:layout_below="@+id/tvProfileUsername"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="4dp"
                     android:layout_marginVertical="16dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:background="@drawable/separator"/>
+                    android:layout_marginHorizontal="0dp"
+                    android:background="@color/gray_f6"/>
 
                 <TextView
                     android:id="@+id/tvProfileEmailTitle"
@@ -125,27 +130,28 @@
                     android:text="Email : "
                     android:textStyle="bold"
                     android:layout_centerHorizontal="false"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:lines="1"
                     android:ellipsize="end"
-                    android:textColor="@color/muted"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginStart="20dp"
                     tools:ignore="HardcodedText" />
                 <TextView
                     android:id="@+id/tvProfileEmail"
                     android:layout_below="@+id/view"
-                    android:layout_toRightOf="@+id/tvProfileEmailTitle"
+                    android:layout_toEndOf="@+id/tvProfileEmailTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test@gmail.com"
+                    android:layout_marginStart="16dp"
+                    android:text="Null"
                     android:layout_centerHorizontal="false"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:lines="1"
                     android:ellipsize="end"
-                    android:textColor="@color/muted"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="2dp"
@@ -158,27 +164,28 @@
                     android:text="Tel : "
                     android:textStyle="bold"
                     android:layout_centerHorizontal="false"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:lines="1"
                     android:ellipsize="end"
-                    android:textColor="@color/muted"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginStart="20dp"
                     tools:ignore="HardcodedText" />
                 <TextView
                     android:id="@+id/tvProfilePhone"
                     android:layout_below="@+id/tvProfileEmail"
-                    android:layout_toRightOf="@+id/tvProfilePhoneTitle"
+                    android:layout_toEndOf="@+id/tvProfilePhoneTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="09xxxxxxxx"
+                    android:layout_marginStart="16dp"
+                    android:text="Null"
                     android:layout_centerHorizontal="false"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:lines="1"
                     android:ellipsize="end"
-                    android:textColor="@color/muted"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="2dp"
@@ -191,27 +198,28 @@
                     android:text="เป็นสมาชิกตั้งแต่ : "
                     android:textStyle="bold"
                     android:layout_centerHorizontal="false"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:lines="1"
                     android:ellipsize="end"
-                    android:textColor="@color/muted"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:layout_marginTop="4dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="20dp"
                     tools:ignore="HardcodedText" />
                 <TextView
                     android:id="@+id/tvProfileMemberSince"
                     android:layout_below="@+id/tvProfilePhone"
-                    android:layout_toRightOf="@+id/tvProfileMemberSinceTitle"
+                    android:layout_toEndOf="@+id/tvProfileMemberSinceTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="member since"
+                    android:layout_marginStart="16dp"
+                    android:text="Null"
                     android:layout_centerHorizontal="false"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:lines="1"
                     android:ellipsize="end"
-                    android:textColor="@color/muted"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="10dp"
@@ -252,7 +260,7 @@
                             android:layout_height="28dp"
                             android:src="@drawable/account_circle_24"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:id="@+id/tvPersonalData"
@@ -260,8 +268,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/profile_personal_data_en"
+                            android:textStyle="normal"
                             android:textSize="14sp"
-                            android:textColor="@color/muted"
+                            android:textColor="@color/ink"
                             android:fontFamily="@font/adlamdisplay_regular"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="20dp"
@@ -273,12 +282,12 @@
                             android:src="@drawable/icon_arrow_next"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                     </RelativeLayout>
                     <RelativeLayout
                         android:id="@+id/btnSettingsLayout"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:layout_below="@+id/btnPersonalDataLayout"
                         android:layout_width="match_parent"
                         android:layout_height="44dp"
@@ -289,7 +298,7 @@
                             android:layout_height="28dp"
                             android:src="@drawable/ic_setting_24"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:id="@+id/tvSettings"
@@ -299,7 +308,7 @@
                             android:layout_centerVertical="true"
                             android:text="@string/profile_settings_en"
                             android:textSize="14sp"
-                            android:textColor="@color/muted"
+                            android:textColor="@color/ink"
                             android:fontFamily="@font/adlamdisplay_regular"
                             android:layout_marginStart="20dp"
                             tools:ignore="RelativeOverlap" />
@@ -310,7 +319,7 @@
                             android:src="@drawable/icon_arrow_next"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                     </RelativeLayout>
                     <RelativeLayout
@@ -325,7 +334,7 @@
                             android:layout_height="28dp"
                             android:src="@drawable/shopping_cart_24"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:id="@+id/tvMyOrder"
@@ -334,8 +343,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="ประวัติคำสั่งซื้อของฉัน"
+                            android:textStyle="bold"
                             android:textSize="14sp"
-                            android:textColor="@color/muted"
+                            android:textColor="@color/ink"
                             android:fontFamily="@font/adlamdisplay_regular"
                             android:layout_marginStart="20dp"
                             tools:ignore="RelativeOverlap" />
@@ -346,7 +356,7 @@
                             android:src="@drawable/icon_arrow_next"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                     </RelativeLayout>
                     <RelativeLayout
@@ -361,7 +371,7 @@
                             android:layout_height="28dp"
                             android:src="@drawable/cottage_24"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:id="@+id/tvMyAddresses"
@@ -370,8 +380,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="ที่อยู่จัดส่งของฉัน"
+                            android:textStyle="bold"
                             android:textSize="14sp"
-                            android:textColor="@color/muted"
+                            android:textColor="@color/ink"
                             android:fontFamily="@font/adlamdisplay_regular"
                             android:layout_marginStart="20dp"
                             tools:ignore="RelativeOverlap" />
@@ -382,11 +393,12 @@
                             android:src="@drawable/icon_arrow_next"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                     </RelativeLayout>
                     <RelativeLayout
                         android:id="@+id/btnManageCategoriesLayout"
+                        android:visibility="gone"
                         android:layout_below="@+id/btnMyAddressesLayout"
                         android:layout_width="match_parent"
                         android:layout_height="44dp"
@@ -397,7 +409,7 @@
                             android:layout_height="28dp"
                             android:src="@drawable/icon_category_search_24"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:id="@+id/tvManageCategories"
@@ -406,8 +418,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="จัดการหมวดหมู่ (admin)"
+                            android:textStyle="bold"
                             android:textSize="14sp"
-                            android:textColor="@color/muted"
+                            android:textColor="@color/ink"
                             android:fontFamily="@font/adlamdisplay_regular"
                             android:layout_marginStart="20dp"
                             tools:ignore="RelativeOverlap" />
@@ -418,7 +431,7 @@
                             android:src="@drawable/icon_arrow_next"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                     </RelativeLayout>
                     <RelativeLayout
@@ -434,7 +447,7 @@
                             android:layout_height="28dp"
                             android:src="@drawable/cards_stack_24"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:id="@+id/tvExtraCard"
@@ -444,7 +457,7 @@
                             android:layout_centerVertical="true"
                             android:text="@string/profile_extra_card_en"
                             android:textSize="14sp"
-                            android:textColor="@color/muted"
+                            android:textColor="@color/ink"
                             android:fontFamily="@font/adlamdisplay_regular"
                             android:layout_marginStart="20dp"
                             tools:ignore="RelativeOverlap" />
@@ -455,7 +468,7 @@
                             android:src="@drawable/icon_arrow_next"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                     </RelativeLayout>
                 </RelativeLayout>
@@ -488,7 +501,7 @@
                             android:layout_height="28dp"
                             android:src="@drawable/help_center_24"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:id="@+id/tvHelpCanter"
@@ -497,7 +510,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/profile_support_help_center_en"
                             android:textSize="14sp"
-                            android:textColor="@color/muted"
+                            android:textColor="@color/ink"
                             android:fontFamily="@font/adlamdisplay_regular"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="20dp"
@@ -509,7 +522,7 @@
                             android:src="@drawable/icon_arrow_next"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            android:tint="@color/muted"
+                            android:tint="@color/ink"
                             tools:ignore="ContentDescription,UseAppTint" />
                     </RelativeLayout>
                     <RelativeLayout
@@ -524,7 +537,7 @@
                             android:layout_height="28dp"
                             android:src="@drawable/manage_accounts_24"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:id="@+id/tvRequestAccount"
@@ -534,7 +547,7 @@
                             android:layout_centerVertical="true"
                             android:text="@string/profile_support_request_acc_en"
                             android:textSize="14sp"
-                            android:textColor="@color/muted"
+                            android:textColor="@color/ink"
                             android:fontFamily="@font/adlamdisplay_regular"
                             android:layout_marginStart="20dp"
                             tools:ignore="RelativeOverlap" />
@@ -545,7 +558,7 @@
                             android:src="@drawable/icon_arrow_next"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                     </RelativeLayout>
                     <RelativeLayout
@@ -560,7 +573,7 @@
                             android:layout_height="28dp"
                             android:src="@drawable/qr_code_add_24"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:id="@+id/tvAddAnotherAcc"
@@ -570,7 +583,7 @@
                             android:layout_centerVertical="true"
                             android:text="@string/profile_support_add_acc_en"
                             android:textSize="14sp"
-                            android:textColor="@color/muted"
+                            android:textColor="@color/ink"
                             android:fontFamily="@font/adlamdisplay_regular"
                             android:layout_marginStart="20dp"
                             tools:ignore="RelativeOverlap" />
@@ -581,7 +594,7 @@
                             android:src="@drawable/icon_arrow_next"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                     </RelativeLayout>
                 </RelativeLayout>
@@ -591,19 +604,20 @@
                     android:id="@+id/btnSightOutLayout"
                     android:layout_below="@id/supportGroupLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_marginVertical="20dp"
-                    android:background="@drawable/bg_sage">
+                    android:layout_height="46dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/transparent">
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true">
+                        android:layout_centerInParent="false"
+                        android:layout_alignParentStart="true">
                         <ImageView
                             android:id="@+id/mvSignOut"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
                             android:src="@drawable/logout_24"
-                            app:tint="@color/muted"
+                            app:tint="@color/ink"
                             tools:ignore="ContentDescription" />
                         <TextView
                             android:layout_width="wrap_content"
@@ -611,9 +625,9 @@
                             android:layout_marginStart="20dp"
                             android:layout_toEndOf="@id/mvSignOut"
                             android:text="@string/sign_out_en"
-                            android:textColor="@color/muted"
+                            android:textColor="@color/ink"
                             android:textSize="14sp"
-                            android:textStyle="bold"
+                            android:textStyle="normal"
                             android:fontFamily="@font/adlamdisplay_regular"/>
                     </RelativeLayout>
                 </RelativeLayout>

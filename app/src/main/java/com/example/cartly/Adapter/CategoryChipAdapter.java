@@ -54,12 +54,12 @@ public class CategoryChipAdapter extends RecyclerView.Adapter<CategoryChipAdapte
 
         if (isAllItem || category.getIcon_url() == null || category.getIcon_url().isEmpty()) {
             Glide.with(holder.binding.mvIconCategory).clear(holder.binding.mvIconCategory); //กันรูปเก่าค้างเมื่อ view ถูก recycle
-            holder.binding.mvIconCategory.setImageResource(isAllItem ? R.drawable.icon_shopping_bag_speed_24 : R.drawable.add_photo_24);
+            holder.binding.mvIconCategory.setImageResource(isAllItem ? R.drawable.icon_shopping_bag_speed_24 : R.drawable.icon_imagesmode_24);
         } else {
             Glide.with(holder.binding.mvIconCategory)
                     .load(category.getIcon_url())
-                    .placeholder(R.drawable.add_photo_24)
-                    .error(R.drawable.add_photo_24)
+                    .placeholder(R.drawable.icon_imagesmode_24)
+                    .error(R.drawable.icon_imagesmode_24)
                     .circleCrop()
                     .into(holder.binding.mvIconCategory);
         }
@@ -84,7 +84,7 @@ public class CategoryChipAdapter extends RecyclerView.Adapter<CategoryChipAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ItemCategoryChipBinding binding;
+        final ItemCategoryChipBinding binding;
 
         public ViewHolder(@NonNull ItemCategoryChipBinding binding) {
             super(binding.getRoot());

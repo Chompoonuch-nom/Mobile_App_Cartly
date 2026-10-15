@@ -101,11 +101,17 @@ public class AddressDao {
         this.postal_code = postal_code;
     }
 
-    public boolean isIs_default() {
+    public boolean is_default() {
         return is_default;
     }
 
     public void setIs_default(boolean is_default) {
         this.is_default = is_default;
+    }
+
+    /** รวมเป็นข้อความที่อยู่เต็มรูปแบบ สำหรับแสดงผลใน UI */
+    public String getFullAddressText() {
+        return String.format("%s ต.%s อ.%s จ.%s %s",
+                address_line, sub_district, district, province, postal_code);
     }
 }

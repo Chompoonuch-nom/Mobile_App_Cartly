@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="14dp"
+    android:layout_margin="4dp"
+    android:background="@drawable/bg_card">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/tvCategoryName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="@string/category_th"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:textColor="@color/ink"/>
+        <TextView
+            android:id="@+id/tvCategoryDes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/muted"
+            android:text="@string/description_en"
+            android:textSize="12sp"
+            android:fontFamily="@font/adlamdisplay_regular"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnEditCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="แก้ไข"
+        android:textSize="12sp"
+        android:fontFamily="@font/adlamdisplay_regular"
+        android:textStyle="bold"
+        android:backgroundTintMode="src_atop"
+        android:backgroundTint="@color/butter"/>
+    <Button
+        android:id="@+id/btnDeleteCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ลบ"
+        android:textSize="12sp"
+        android:fontFamily="@font/adlamdisplay_regular"
+        android:textStyle="bold"
+        android:backgroundTintMode="src_atop"
+        android:backgroundTint="@color/coral"/>
+
+</LinearLayout>

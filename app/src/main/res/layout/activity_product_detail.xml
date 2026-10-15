@@ -1,216 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductDetailActivity"
-    android:background="@color/cream">
-
-    <RelativeLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="UselessParent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/gray_f6"
+        android:padding="16dp">
         <RelativeLayout
-            android:id="@+id/topProductLayout"
-            android:layout_width="match_parent"
-            android:layout_height="264dp"
-            android:background="@drawable/bg_card">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <ImageView
-                android:id="@+id/mvImgProduct"
+                android:id="@+id/ivProduct"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/qr_code_add_24"
-                app:tint="@color/trans_gray"
-                android:scaleType="fitCenter"
-                tools:ignore="ContentDescription" />
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
+                android:background="@color/cream"
+                android:contentDescription="@null"/>
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp">
+                android:id="@+id/layoutAdminActions"
+                android:visibility="gone"
+                android:layout_below="@id/ivProduct"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/mvBtnBackArrow"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:src="@drawable/icon_back_arrow_circle"
+                    android:id="@+id/ivBtnEditProduct"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/icon_edit_square_24"
+                    android:layout_marginTop="10dp"
+                    app:tint="@color/green_brand"
                     tools:ignore="ContentDescription" />
                 <ImageView
-                    android:id="@+id/mvBtnShare"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/icon_share_windows_24"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    app:tint="@color/muted"
+                    android:id="@+id/ivBtnDeleteProduct"
+                    android:layout_toRightOf="@+id/ivBtnEditProduct"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/icon_delete_24"
+                    android:layout_marginTop="10dp"
+                    app:tint="@color/coral"
                     tools:ignore="ContentDescription" />
             </RelativeLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/detailProductLayout"
-            android:layout_below="@+id/topProductLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="20dp">
             <TextView
                 android:id="@+id/tvProductName"
-                android:layout_toStartOf="@+id/mvBtnLikeProduct"
+                android:layout_toLeftOf="@id/layoutAdminActions"
+                android:layout_below="@id/ivProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:text="@string/product_name_en"
-                android:textSize="16sp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="4dp"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:textColor="@color/ink"
-                android:fontFamily="@font/adlamdisplay_regular"/>
-            <RelativeLayout
-                android:id="@+id/priceProductLayout"
-                android:layout_below="@id/tvProductName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-                <TextView
-                    android:id="@+id/tvDollar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="$"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/ink"
-                    android:fontFamily="@font/adlamdisplay_regular"
-                    tools:ignore="HardcodedText" />
-                <TextView
-                    android:id="@+id/tvPrice"
-                    android:layout_toEndOf="@id/tvDollar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0.00"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/ink"
-                    android:fontFamily="@font/adlamdisplay_regular"
-                    tools:ignore="HardcodedText" />
-            </RelativeLayout>
-            <ImageView
-                android:id="@+id/separator"
-                android:layout_below="@+id/priceProductLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/separator"
-                android:layout_marginVertical="20dp"
-                tools:ignore="ContentDescription" />
-            <ImageView
-                android:id="@+id/mvBtnLikeProduct"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/icon_mood_heart_24"
-                android:layout_alignParentEnd="true"
-                app:tint="@color/red_02"
-                tools:ignore="ContentDescription" />
-            <TextView
-                android:id="@+id/tvTitleDescription"
-                android:layout_below="@+id/separator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/description_title_en"
-                android:textSize="14sp"
-                android:textColor="@color/ink"
-                android:fontFamily="@font/adlamdisplay_regular" />
-            <TextView
-                android:id="@+id/tvProductDescription"
-                android:layout_below="@+id/tvTitleDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/description_en"
-                android:textSize="14sp"
-                android:textColor="@color/muted"
+                android:text="@string/product_name_en"
                 android:fontFamily="@font/adlamdisplay_regular"
-                android:layout_marginVertical="10dp"/>
-            <RelativeLayout
-                android:id="@+id/bottomLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+                android:textColor="@color/ink"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvProductPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="@color/ink"
+            android:text="฿25.00"
+            android:fontFamily="@font/adlamdisplay_regular"/>
+        <TextView
+            android:id="@+id/tvProductStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="คงเหลือ : 123"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:textSize="11sp"
+            android:textColor="@color/muted"/>
+        <TextView
+            android:id="@+id/tvProductDescp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/description_en"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:textSize="11sp"
+            android:textColor="@color/muted"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical">
+            <ImageView
+                android:id="@+id/btnMinus"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:padding="12dp"
+                android:src="@drawable/icon_count_down"
+                tools:ignore="ContentDescription"
+                android:backgroundTintMode="src_atop"
+                android:background="@drawable/bg_sage"/>
+            <TextView
+                android:id="@+id/tvQuantity"
+                android:layout_width="100dp"
+                android:layout_height="28dp"
+                android:background="@drawable/bg_input"
+                android:layout_marginHorizontal="4dp"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/adlamdisplay_regular"
+                android:textColor="@color/ink"/>
+            <ImageView
+                android:id="@+id/btnPlus"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_sage"
+                android:src="@drawable/icon_plus"
+                tools:ignore="ContentDescription" />
+
+            <LinearLayout
+                android:id="@+id/btnAddToCart"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp">
                 <RelativeLayout
-                    android:id="@+id/countLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_sage"
+                    android:layout_gravity="center_horizontal">
+                    <TextView
+                        android:id="@+id/tvAddToCart"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_to_cart_th"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/green_brand"
+                        android:fontFamily="@font/adlamdisplay_regular"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="0dp"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/separator"
+            android:layout_marginVertical="16dp"/>
+        <TextView
+            android:id="@+id/tvReviewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/review_product_title_th"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:textColor="@color/ink"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerReviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:nestedScrollingEnabled="false"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12sp"
+            android:text="@string/rate_product_title_th"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:textColor="@color/ink"/>
+        <RatingBar
+            android:id="@+id/ratingBarInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:progressTint="@color/butter"
+            android:numStars="5"
+            android:stepSize="1"
+            android:rating="5"/>
+        <EditText
+            android:id="@+id/edtComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edt_comment_review_hint_th"
+            android:background="@drawable/bg_input"
+            android:padding="8dp"
+            android:textSize="11sp"
+            android:textStyle="normal"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:textColor="@color/ink"
+            android:textColorHint="@color/muted"/>
+        <LinearLayout
+            android:id="@+id/btnSubmitReview"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:layout_marginVertical="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_sage"
+                android:layout_gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/tvSubmitReview"
+                    android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="20dp">
-                    <ImageView
-                        android:id="@+id/mvBtnCountDown"
-                        android:layout_width="17dp"
-                        android:layout_height="2.84dp"
-                        android:src="@drawable/icon_count_down"
-                        android:layout_centerVertical="true"
-                        tools:ignore="ContentDescription" />
-                    <RelativeLayout
-                        android:id="@+id/countChangeLayout"
-                        android:layout_toEndOf="@+id/mvBtnCountDown"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp">
-                        <ImageView
-                            android:layout_width="45.67dp"
-                            android:layout_height="32dp"
-                            android:background="@drawable/bg_input"
-                            tools:ignore="ContentDescription" />
-                        <TextView
-                            android:id="@+id/tvCount"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:text="1"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/adlamdisplay_regular"
-                            android:textColor="@color/ink"
-                            tools:ignore="HardcodedText" />
-                    </RelativeLayout>
-                    <ImageView
-                        android:id="@+id/mvBtnCountUp"
-                        android:layout_toEndOf="@+id/countChangeLayout"
-                        android:layout_width="17dp"
-                        android:layout_height="17dp"
-                        android:src="@drawable/icon_plus"
-                        android:layout_centerVertical="true"
-                        tools:ignore="ContentDescription" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/btnAddToCartLayout"
-                    android:layout_toEndOf="@+id/countLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
+                    android:text="@string/submit_review_th"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/green_brand"
+                    android:fontFamily="@font/adlamdisplay_regular"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/bg_sage">
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true">
-                        <ImageView
-                            android:id="@+id/mvCartIcon"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/shopping_cart_24"
-                            android:layout_centerVertical="true"
-                            app:tint="@color/green_brand" />
-                        <TextView
-                            android:id="@+id/tvAdd"
-                            android:layout_toEndOf="@+id/mvCartIcon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/add_to_cart_en"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/green_brand"
-                            android:fontFamily="@font/adlamdisplay_regular"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="20dp"/>
-                    </RelativeLayout>
-                </RelativeLayout>
+                    android:layout_marginStart="0dp"/>
             </RelativeLayout>
-        </RelativeLayout>
-    </RelativeLayout>
-</RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

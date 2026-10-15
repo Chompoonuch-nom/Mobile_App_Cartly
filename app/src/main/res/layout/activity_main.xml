@@ -7,21 +7,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/cream"
+    android:background="@color/gray_f6"
     tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/light_purple"
+        app:title="CARTLY"
+        app:titleTextColor="@color/gray"
+        android:nestedScrollingEnabled="true" />
+
     <FrameLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:visibility="visible"
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="8dp"
+        app:labelVisibilityMode="labeled"
         android:animateLayoutChanges="false"
         app:backgroundTint="@color/transparent"
-        app:itemIconTint="@color/muted"
-        app:itemTextColor="@color/muted"
-        app:menu="@menu/bottom_nav_customer_menu"/>
+        app:itemBackground="@color/gray_f6"
+        app:itemIconTint="@color/gray"
+        app:itemTextColor="@color/gray"
+        app:menu="@menu/menu_bottom_nav"/>
 </LinearLayout>

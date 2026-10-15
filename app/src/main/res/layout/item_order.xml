@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="14dp"
+    android:background="@drawable/bg_card"
+    android:layout_marginBottom="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvOrderId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="tvOrderId"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:textSize="12sp"
+            android:textColor="@color/ink"/>
+        <TextView
+            android:id="@+id/tvOrderStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/green_brand"
+            android:textSize="12sp"
+            android:text="tvOrderStatus"
+            android:fontFamily="@font/adlamdisplay_regular"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvOrderDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:text="tvOrderDate"
+        android:fontFamily="@font/adlamdisplay_regular"/>
+    <TextView
+        android:id="@+id/tvOrderTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="16sp"
+        android:text="tvOrderTotal"
+        android:textStyle="bold"
+        android:textColor="@color/green_brand"
+        android:fontFamily="@font/adlamdisplay_regular"/>
+
+</LinearLayout>

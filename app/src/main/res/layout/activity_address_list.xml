@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray_f6"
+    tools:context=".AddressListActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/light_purple"
+        app:title="ที่อยู่จัดส่ง"
+        app:titleTextColor="@color/black" />
+    <Button
+        android:id="@+id/btnAddAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:backgroundTintMode="src_atop"
+        android:backgroundTint="@color/green_brand"
+        android:text="+ เพิ่มที่อยู่ใหม่"
+        android:fontFamily="@font/adlamdisplay_regular"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/tvSelectHint"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="แตะที่อยู่เพื่อเลือกใช้จัดส่ง"
+        android:fontFamily="@font/adlamdisplay_regular"
+        android:textSize="12sp"
+        android:textColor="@color/gray"
+        android:background="@color/gray_f6"
+        android:gravity="center" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerAddress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
