@@ -1,78 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
     android:background="@color/gray_f6"
     tools:context=".CategoryFormActivity">
 
-    <TextView
-        android:id="@+id/tvFormTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="เพิ่มหมวดหมู่ใหม่"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/adlamdisplay_regular"
-        android:textColor="@color/ink"/>
-
-    <EditText
-        android:id="@+id/edtCategoryName"
-        android:background="@drawable/bg_input"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="ชื่อหมวดหมู่"
-        android:fontFamily="@font/adlamdisplay_regular"
-        android:textSize="12sp"
-        android:textColor="@color/black"/>
-
-    <EditText
-        android:id="@+id/edtCategoryDes"
-        android:background="@drawable/bg_input"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="คำอธิบาย (ไม่บังคับ)"
-        android:fontFamily="@font/adlamdisplay_regular"
-        android:textSize="12sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"/>
-
-    <EditText
-        android:id="@+id/edtIconUrl"
-        android:background="@drawable/bg_input"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="URL ไอคอน (ไม่บังคับ)"
-        android:fontFamily="@font/adlamdisplay_regular"
-        android:textSize="12sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"/>
-
-    <Button
-        android:id="@+id/btnSave"
-        android:backgroundTintMode="src_atop"
-        android:backgroundTint="@color/green_brand"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_gravity="center_horizontal"
+    <com.example.cartly.View.ToolbarView
+        android:id="@+id/toolbar"
         android:layout_marginTop="20dp"
-        android:text="@string/save_th"
-        android:fontFamily="@font/adlamdisplay_regular"
-        android:textStyle="bold"
-        android:textSize="14sp"/>
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="12dp"
-        android:visibility="gone" />
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <EditText
+            android:id="@+id/edtCategoryName"
+            android:background="@drawable/bg_input"
+            android:inputType="text"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ชื่อหมวดหมู่"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            tools:ignore="Autofill,HardcodedText" />
+        <EditText
+            android:id="@+id/edtCategoryDes"
+            android:background="@drawable/bg_input"
+            android:inputType="text"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="คำอธิบาย (ไม่บังคับ)"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            tools:ignore="Autofill,HardcodedText" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="14dp">
+            <ImageView
+                android:id="@+id/ivIconPreview"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@color/trans_gray"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_imagesmode_24"/>
+            <Button
+                android:id="@+id/btnPickIcon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/green_brand"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:text="ถ่ายรูป / เลือกไอคอนจากแกลเลอรี"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edtIconUrl"
+            android:background="@drawable/bg_input"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="URL ไอคอน (ไม่บังคับ)"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            tools:ignore="Autofill,HardcodedText,TextFields" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:backgroundTintMode="src_atop"
+            android:backgroundTint="@color/green_brand"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="@string/save_th"
+            android:fontFamily="@font/adlamdisplay_regular"
+            android:textStyle="bold"
+            android:textSize="14sp"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
 </LinearLayout>

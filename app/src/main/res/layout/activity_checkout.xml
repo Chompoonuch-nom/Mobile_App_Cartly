@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -8,14 +7,12 @@
     android:orientation="vertical"
     android:background="@color/gray_f6"
     tools:context=".CheckoutActivity">
-    <androidx.appcompat.widget.Toolbar
+
+    <com.example.cartly.View.ToolbarView
         android:id="@+id/toolbar"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/light_purple"
-        android:title="ยืนยันคำสั่งซื้อ"
-        android:titleTextColor="@color/white"
-        app:titleTextColor="@color/white" />
+        android:layout_height="?attr/actionBarSize"/>
     <LinearLayout
         android:id="@+id/container"
         android:visibility="visible"
@@ -30,7 +27,8 @@
             android:textStyle="bold"
             android:fontFamily="@font/adlamdisplay_regular"
             android:textColor="@color/ink"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
         <TextView
             android:id="@+id/tvSelectedAddress"
             android:layout_width="wrap_content"
@@ -42,7 +40,8 @@
             android:textStyle="normal"
             android:fontFamily="@font/adlamdisplay_regular"
             android:textColor="@color/gray"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            tools:ignore="HardcodedText" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,7 +50,8 @@
             android:textStyle="bold"
             android:fontFamily="@font/adlamdisplay_regular"
             android:textColor="@color/ink"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
 
         <RadioGroup
             android:id="@+id/radioPaymentMethod"
@@ -68,7 +68,8 @@
                 android:buttonTint="@color/green_brand"
                 android:textSize="12sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/adlamdisplay_regular"/>
+                android:fontFamily="@font/adlamdisplay_regular"
+                tools:ignore="HardcodedText" />
             <RadioButton
                 android:id="@+id/rbCreditCard"
                 android:layout_width="match_parent"
@@ -79,7 +80,8 @@
                 android:buttonTint="@color/green_brand"
                 android:textSize="12sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/adlamdisplay_regular"/>
+                android:fontFamily="@font/adlamdisplay_regular"
+                tools:ignore="HardcodedText" />
             <RadioButton
                 android:id="@+id/rbPromptpay"
                 android:layout_width="match_parent"
@@ -90,7 +92,8 @@
                 android:buttonTint="@color/green_brand"
                 android:textSize="12sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/adlamdisplay_regular"/>
+                android:fontFamily="@font/adlamdisplay_regular"
+                tools:ignore="HardcodedText" />
             <RadioButton
                 android:id="@+id/rbTruemoney"
                 android:layout_width="match_parent"
@@ -101,7 +104,8 @@
                 android:buttonTint="@color/green_brand"
                 android:textSize="12sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/adlamdisplay_regular"/>
+                android:fontFamily="@font/adlamdisplay_regular"
+                tools:ignore="HardcodedText" />
         </RadioGroup>
 
         <TextView
@@ -115,7 +119,8 @@
             android:textStyle="bold"
             android:text="ยอดรวม: ฿0"
             android:fontFamily="@font/adlamdisplay_regular"
-            android:textColor="@color/butter"/>
+            android:textColor="@color/butter"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/btnConfirmOrder"
@@ -130,7 +135,8 @@
             android:textColor="@color/gray_f6"
             android:fontFamily="@font/adlamdisplay_regular"
             android:textStyle="bold"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
     <RelativeLayout
         android:id="@+id/layoutLoading"

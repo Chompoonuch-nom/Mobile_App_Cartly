@@ -1,5 +1,6 @@
 package com.example.cartly;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
@@ -10,16 +11,14 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.cartly.ApiService.CartApiService;
 import com.example.cartly.ApiService.OrderApiService;
 import com.example.cartly.ResponseDao.CartDao;
 import com.example.cartly.ResponseDao.OrderDao;
 import com.example.cartly.Util.ApiCallback;
+import com.example.cartly.Util.ProductListState;
 import com.example.cartly.databinding.ActivityCheckoutBinding;
 
 /** ยืนยันคำสั่งซื้อ — เลือกที่อยู่ (AddressListActivity แบบ select mode) แล้วเรียก POST /api/orders/checkout */
@@ -43,8 +42,9 @@ public class CheckoutActivity extends AppCompatActivity {
         binding = ActivityCheckoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.toolbar);
-        binding.toolbar.setNavigationOnClickListener(view -> finish());
+        binding.toolbar.setTitle("ยืนยันคำสั่งซื้อ");
+        binding.toolbar.setTitleTextAppearance(this,R.style.ToolbarTitleStyle);
+        binding.toolbar.setOnBackClickListener(this::finish);
 
         binding.tvSelectedAddress.setOnClickListener(view -> {
             Intent intent = new Intent(this, AddressListActivity.class);
@@ -67,6 +67,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private void loadCartSummary() {
         cartApiService.getMyCart(new ApiCallback<CartDao>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onSuccess(CartDao data, String message) {
                 if (isFinishing() || isDestroyed()) return;
@@ -101,6 +102,7 @@ public class CheckoutActivity extends AppCompatActivity {
             public void onSuccess(OrderDao data, String message) {
                 if (isFinishing() || isDestroyed()) return;
                 setLoading(false);
+                ProductListState.markStale(); // สต็อกสินค้าลดลง
                 Toast.makeText(CheckoutActivity.this, message, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CheckoutActivity.this, OrderDetailActivity.class);
                 intent.putExtra("order_id", data.getOrder_id());

@@ -42,6 +42,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
+    implementation("androidx.appcompat:appcompat:1.7.1")
 
 //    Splash Screeen
     implementation(libs.core.splashscreen)

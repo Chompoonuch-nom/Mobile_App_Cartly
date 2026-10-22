@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="14dp"
-    android:background="@drawable/bg_card"
-    android:layout_marginBottom="1dp">
+    android:background="@color/white"
+    android:layout_marginBottom="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,16 +21,20 @@
             android:text="tvOrderId"
             android:fontFamily="@font/adlamdisplay_regular"
             android:textSize="12sp"
-            android:textColor="@color/ink"/>
+            android:textColor="@color/ink"
+            tools:ignore="HardcodedText" />
         <TextView
             android:id="@+id/tvOrderStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_input"
+            android:padding="10dp"
             android:textStyle="bold"
-            android:textColor="@color/green_brand"
+            android:textColor="@color/butter"
             android:textSize="12sp"
             android:text="tvOrderStatus"
-            android:fontFamily="@font/adlamdisplay_regular"/>
+            android:fontFamily="@font/adlamdisplay_regular"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <TextView
@@ -39,7 +44,8 @@
         android:textColor="@color/gray"
         android:textSize="12sp"
         android:text="tvOrderDate"
-        android:fontFamily="@font/adlamdisplay_regular"/>
+        android:fontFamily="@font/adlamdisplay_regular"
+        tools:ignore="HardcodedText" />
     <TextView
         android:id="@+id/tvOrderTotal"
         android:layout_width="match_parent"
@@ -49,6 +55,7 @@
         android:text="tvOrderTotal"
         android:textStyle="bold"
         android:textColor="@color/green_brand"
-        android:fontFamily="@font/adlamdisplay_regular"/>
+        android:fontFamily="@font/adlamdisplay_regular"
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>

@@ -10,14 +10,11 @@
     android:background="@color/gray_f6"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.example.cartly.View.ToolbarView
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/light_purple"
-        app:title="CARTLY"
-        app:titleTextColor="@color/gray"
-        android:nestedScrollingEnabled="true" />
+        android:layout_marginTop="20dp"/>
 
     <FrameLayout
         android:id="@+id/fragmentContainer"

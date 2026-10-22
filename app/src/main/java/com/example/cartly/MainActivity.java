@@ -22,6 +22,11 @@ import com.example.cartly.Fragment.ProfileFragment;
 import com.example.cartly.Util.TokenManager;
 import com.example.cartly.databinding.ActivityMainBinding;
 
+/**
+ * Host ของแอป: Toolbar + พื้นที่แสดง Fragment + BottomNavigationView
+ * Fragment แต่ละหน้าถูกสร้างตอนเปิดครั้งแรก แล้วใช้ hode/show สลับ เพื่อคง state ไว้ (เช่น ตำแหน่งสกรอล์หน้า Home)
+ * ตระกร้า/คำสั่งซื้อ/โปรไฟล์ ต้อง login ก่อน ไม่งั้นพาไปหน้า Login
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
@@ -40,8 +45,12 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.toolbar);
+//        setSupportActionBar(binding.toolbar);
+        binding.toolbar.attachTo(this, getText(R.string.app_name));
+        // ปุ่มย้อนกลับบน Toolbar: ทุกแท็บที่ไม่ใช่หน้าแรกจะกลับไปหน้าแรก (หน้าแรกไม่แสดงปุ่ม)
+        binding.toolbar.setOnBackClickListener(() -> selectTab(R.id.nav_home));
 
+        binding.toolbar.setTitleTextAppearance(this,R.style.ToolbarTitleStyle);
         binding.bottomNav.setOnItemSelectedListener(menuItem -> {
             int id = menuItem.getItemId();
             if (requireLogin(id) && !TokenManager.isLoggedIn()) {
@@ -95,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
     private void showTab(int tabId) {
         currentTabId = tabId;
         binding.toolbar.setTitle(titleFor(tabId));
+        binding.toolbar.setBackButtonVisible(tabId != R.id.nav_home);
+        invalidateOptionsMenu(); // เมนู Admin แสดงเฉพาะหน้า Home
 
         FragmentManager fm = getSupportFragmentManager();
         String targetTag = tagFor(tabId);
@@ -132,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         if (tabId == R.id.nav_cart) return "ตะกร้าสินค้า";
         if (tabId == R.id.nav_orders) return "คำสั่งซื้อของฉัน";
         if (tabId == R.id.nav_profile) return "โปรไฟล์ของฉัน";
-        return "Cartly";
+        return "CARTLY";
     }
 
     /** Fragment เรียกเมื่อ API ตอบ 401 (token หมดอายุ/ไม่ถูกต้อง) -> ล้าง session แล้วกลับหน้า Login */
@@ -149,6 +160,13 @@ public class MainActivity extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.menu_main, menu);
         }
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        boolean onHome = currentTabId == R.id.nav_home;
+        for (int i = 0; i < menu.size(); i++) menu.getItem(i).setVisible(onHome);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override

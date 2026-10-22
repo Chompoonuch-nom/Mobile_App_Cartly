@@ -9,10 +9,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +22,7 @@ import com.example.cartly.ResponseDao.ProductDao;
 import com.example.cartly.ResponseDao.ReviewDao;
 import com.example.cartly.Util.ApiCallHandler;
 import com.example.cartly.Util.ApiCallback;
+import com.example.cartly.Util.ProductListState;
 import com.example.cartly.Util.TokenManager;
 import com.example.cartly.databinding.ActivityProductDetailBinding;
 
@@ -57,12 +55,12 @@ public class ProductDetailActivity extends AppCompatActivity {
         binding = ActivityProductDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Intent intent = getIntent();
-        productId = intent.getLongExtra("product_id", -1);
-        initComponent();
-    }
+        productId = getIntent().getLongExtra("product_id", -1);
 
-    private void initComponent() {
+        binding.toolbar.setTitle("รายละเอียดสินค้า");
+        binding.toolbar.setTitleTextAppearance(this,R.style.ToolbarTitleStyle);
+        binding.toolbar.setOnBackClickListener(this::finish);
+
         binding.btnMinus.setOnClickListener(view -> changeQuantity(-1));
         binding.btnPlus.setOnClickListener(view -> changeQuantity(1));
         binding.btnAddToCart.setOnClickListener(view -> addToCart());
@@ -156,6 +154,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             productApiService.delete(productId, new ApiCallback<Object>() {
                 @Override
                 public void onSuccess(Object data, String message) {
+                    ProductListState.markStale();
                     Toast.makeText(ProductDetailActivity.this, message, Toast.LENGTH_SHORT).show();
                     finish();
                 }

@@ -10,17 +10,13 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.cartly.Adapter.AddressAdapter;
 import com.example.cartly.ApiService.AddressApiService;
 import com.example.cartly.ResponseDao.AddressDao;
 import com.example.cartly.Util.ApiCallback;
-import com.example.cartly.Util.TokenManager;
 import com.example.cartly.databinding.ActivityAddressListBinding;
 
 import java.util.List;
@@ -50,8 +46,10 @@ public class AddressListActivity extends AppCompatActivity {
 
         selectMode = getIntent().getBooleanExtra("select_mode",false);
 
-        setSupportActionBar(binding.toolbar);
-        binding.toolbar.setNavigationOnClickListener(view -> finish());
+        binding.toolbar.setTitle(selectMode ? "แก้ไขที่อยู่" : "เพิ่มที่อยู่ใหม่");
+        binding.toolbar.setTitleTextAppearance(this,R.style.ToolbarTitleStyle);
+        binding.toolbar.setOnBackClickListener(this::finish);
+
         binding.tvSelectHint.setVisibility(selectMode ? View.VISIBLE : View.GONE);
 
         binding.recyclerAddress.setLayoutManager(new LinearLayoutManager(this));

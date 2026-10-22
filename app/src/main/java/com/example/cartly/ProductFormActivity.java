@@ -1,28 +1,30 @@
 package com.example.cartly;
 
-import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.example.cartly.ApiService.CategoryApiService;
 import com.example.cartly.ApiService.ProductApiService;
+import com.example.cartly.ApiService.UploadApiService;
 import com.example.cartly.RequestDao.ProductRequestDao;
 import com.example.cartly.ResponseDao.CategoryDao;
 import com.example.cartly.ResponseDao.ProductDao;
 import com.example.cartly.ResponseDao.ProductImageDao;
+import com.example.cartly.ResponseDao.UploadResultDao;
 import com.example.cartly.Util.ApiCallback;
+import com.example.cartly.Util.ImagePicker;
+import com.example.cartly.Util.ImageUrlResolver;
+import com.example.cartly.Util.ProductListState;
 import com.example.cartly.databinding.ActivityProductFormBinding;
 import com.example.cartly.databinding.RowProductImageBinding;
 
@@ -39,6 +41,10 @@ public class ProductFormActivity extends AppCompatActivity {
 
     private final ProductApiService productApiService = new ProductApiService();
     private final CategoryApiService categoryApiService = new CategoryApiService();
+    private final UploadApiService uploadApiService = new UploadApiService();
+
+    // ต้องเป็น field เพื่อให้ลงทะเบียนตัวรับผลลัพธ์ (กล้อง/แกลเลอรี) ทันก่อนหน้าจอเริ่มทำงาน
+    private final ImagePicker imagePicker = new ImagePicker(this, this::uploadPickedImage);
 
     private long productId = -1;
     private boolean isEditMode;
@@ -57,23 +63,23 @@ public class ProductFormActivity extends AppCompatActivity {
         binding = ActivityProductFormBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Intent intent = getIntent();
-        productId = intent.getLongExtra("product_id", -1);
+        productId = getIntent().getLongExtra("product_id", -1);
         isEditMode = productId != -1;
 
-        initComponent();
-    }
+        binding.toolbar.setTitle(isEditMode ? "แก้ไขสินค้า" : "เพิ่มสินค้าใหม่");
+        binding.toolbar.setTitleTextAppearance(this,R.style.ToolbarTitleStyle);
+        binding.toolbar.setOnBackClickListener(this::finish);
 
-    private void initComponent() {
-        binding.tvFormTitle.setText(isEditMode ? "แก้ไขสินค้า" : "เพิ่มสินค้าใหม่");
         binding.btnSave.setOnClickListener(view -> save());
         binding.btnAddImage.setOnClickListener(view -> addImage());
+        binding.btnPickImage.setOnClickListener(view -> imagePicker.showChooser(this));
 
         if (isEditMode) {
             binding.layoutImagesSection.setVisibility(View.VISIBLE);
         }
 
         loadCategories(); // โหลด spinner ก่อน แล้วค่อย loadProduct (ถ้ามี) เพื่อเลือกหมวดหมู่ที่ถูกต้อง
+
     }
 
     // -------- Category Spinner
@@ -139,24 +145,62 @@ public class ProductFormActivity extends AppCompatActivity {
         binding.layoutImageList.removeAllViews();
         if (images == null) return;
         for (ProductImageDao img : images) {
-            RowProductImageBinding rowProductImageBinding = RowProductImageBinding.inflate(LayoutInflater.from(this),binding.layoutImageList,false);
-            rowProductImageBinding.tvImageUrl.setText(img.getImage_url());
-            rowProductImageBinding.tvPrimaryBadge.setVisibility(img.isPrimary() ? View.VISIBLE : View.GONE);
-            rowProductImageBinding.btnDeleteImage.setOnClickListener(view -> deleteImage(img.getProduct_img_id()));
-            binding.layoutImageList.addView(rowProductImageBinding.getRoot());
+            RowProductImageBinding row = RowProductImageBinding.inflate(getLayoutInflater(), binding.layoutImageList,false);
+            row.tvImageUrl.setText(img.getImage_url());
+
+            Glide.with(row.ivThumb)
+                    .load(ImageUrlResolver.resolve(img.getImage_url()))
+                    .placeholder(R.drawable.icon_imagesmode_24)
+                    .error(R.drawable.icon_imagesmode_24)
+                    .centerCrop()
+                    .into(row.ivThumb);
+            row.tvPrimaryBadge.setVisibility(img.isPrimary() ? View.VISIBLE : View.GONE);
+            row.btnDeleteImage.setOnClickListener(view -> deleteImage(img.getProduct_img_id()));
+            binding.layoutImageList.addView(row.getRoot());
         }
     }
 
+    /** เพิ่มรูปจาก URL ที่กรอกเอง */
     private void addImage() {
         String url = binding.edtImageUrl.getText().toString().trim();
         if (url.isEmpty()) {
-            Toast.makeText(this, "กรอก URL รูปภาพก่อน", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "กรอก URL รูปภาพ หรือกดปุ่มถ่ายรูป/เลือกจากแกลเลอรี", Toast.LENGTH_LONG).show();
             return;
         }
+        setUploading(true);
+        addImageByUrl(url);
+    }
+
+    /** รูปที่ถ่าย/เลือกจากเครื่อง: อัปโหลดขึ้น backend ก่อน แล้วเพิ่มเข้าสินค้าด้วย url ที่ได้กลับมา */
+    private void uploadPickedImage(Uri uri) {
+        if (!isEditMode) {
+            Toast.makeText(this, "บันทึกสินค้าก่อน แล้วจึงเพิ่มรูปได้", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        setLoading(true);
+        uploadApiService.uploadImage(this, uri, new ApiCallback<UploadResultDao>() {
+            @Override
+            public void onSuccess(UploadResultDao data, String message) {
+                if (isFinishing() || isDestroyed()) return;
+                addImageByUrl(data.getUrl());
+            }
+
+            @Override
+            public void onError(String message, int httpCode) {
+                if (isFinishing() || isDestroyed()) return;
+                setUploading(false);
+                Toast.makeText(ProductFormActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void addImageByUrl(String url) {
         productApiService.addImage(productId, url, binding.checkboxIsPrimary.isChecked(), new ApiCallback<ProductDao>() {
             @Override
             public void onSuccess(ProductDao data, String message) {
                 if (isFinishing() || isDestroyed()) return;
+                setUploading(false);
+                ProductListState.markStale();
                 binding.edtImageUrl.setText("");
                 binding.checkboxIsPrimary.setChecked(false);
                 renderImages(data.getImages());
@@ -165,9 +209,16 @@ public class ProductFormActivity extends AppCompatActivity {
             @Override
             public void onError(String message, int httpCode) {
                 if (isFinishing() || isDestroyed()) return;
+                setUploading(false);
                 Toast.makeText(ProductFormActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void setUploading(boolean uploading) {
+        binding.progressBar.setVisibility(uploading ? View.VISIBLE : View.GONE);
+        binding.btnPickImage.setEnabled(!uploading);
+        binding.btnAddImage.setEnabled(!uploading);
     }
 
     private void deleteImage(long productImgId) {
@@ -175,6 +226,7 @@ public class ProductFormActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Object data, String message) {
                 if (isFinishing() || isDestroyed()) return;
+                ProductListState.markStale();
                 loadProduct(); // โหลดใหม่เพื่ออัปเดตรายการรูป
             }
 
@@ -224,7 +276,7 @@ public class ProductFormActivity extends AppCompatActivity {
                     // สร้างใหม่เสร็จแล้ว -> เปิดหน้านี้อีกครั้งในโหมดแก้ไขเพื่อเพิ่มรูปภาพต่อได้ทันที
                     productId = data.getProduct_id();
                     isEditMode = true;
-                    binding.tvFormTitle.setText("แก้ไขสินค้า");
+                    binding.toolbar.setTitle("แก้ไขสินค้า");
                     binding.layoutImagesSection.setVisibility(View.VISIBLE);
                 } else {
                     finish();

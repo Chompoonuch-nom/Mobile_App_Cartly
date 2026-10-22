@@ -8,10 +8,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.cartly.ApiService.AddressApiService;
 import com.example.cartly.RequestDao.AddressRequestDao;
@@ -45,10 +42,13 @@ public class AddressFormActivity extends AppCompatActivity {
         addressId = getIntent().getLongExtra("address_id", -1);
         isEditMode = addressId != -1;
 
-        binding.tvFormTitle.setText(isEditMode ? "แก้ไขที่อยู่" : "เพิ่มที่อยู่ใหม่");
-        binding.btnSave.setOnClickListener(view -> save());
+        binding.toolbar.setTitle(isEditMode ? "แก้ไขที่อยู่" : "เพิ่มที่อยู่ใหม่");
+        binding.toolbar.setTitleTextAppearance(this,R.style.ToolbarTitleStyle);
+        binding.toolbar.setOnBackClickListener(this::finish);
 
         if (isEditMode) loadExistingAddress();
+
+        binding.btnSave.setOnClickListener(view -> save());
     }
 
     private void loadExistingAddress() {

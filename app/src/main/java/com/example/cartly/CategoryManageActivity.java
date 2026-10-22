@@ -8,10 +8,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.cartly.Adapter.CategoryAdapter;
@@ -42,13 +39,10 @@ public class CategoryManageActivity extends AppCompatActivity {
         binding = ActivityCategoryManageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.toolbar);
-        binding.toolbar.setNavigationOnClickListener(view -> finish());
+        binding.toolbar.setTitle("จัดการหมวดหมู่");
+        binding.toolbar.setTitleTextAppearance(this,R.style.ToolbarTitleStyle);
+        binding.toolbar.setOnBackClickListener(this::finish);
 
-        initComponent();
-    }
-
-    private void initComponent() {
         binding.recyclerCategories.setLayoutManager(new LinearLayoutManager(this));
         categoryAdapter = new CategoryAdapter(new CategoryAdapter.Listener() {
             @Override

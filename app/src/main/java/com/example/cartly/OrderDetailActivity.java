@@ -46,8 +46,9 @@ public class OrderDetailActivity extends AppCompatActivity {
 
         orderId = getIntent().getLongExtra("order_id", -1);
 
-        setSupportActionBar(binding.toolbar);
-        binding.toolbar.setNavigationOnClickListener(view -> finish());
+        binding.toolbar.setTitle("รายละเอียดคำสั่งซื้อ");
+        binding.toolbar.setTitleTextAppearance(this,R.style.ToolbarTitleStyle);
+        binding.toolbar.setOnBackClickListener(this::finish);
         binding.btnCancelOrder.setOnClickListener(view -> cancelOrder());
 
         if (TokenManager.isAdmin()) {
@@ -64,9 +65,9 @@ public class OrderDetailActivity extends AppCompatActivity {
     private void loadOrder() {
         orderApiService.getById(orderId, new ApiCallback<OrderDao>() {
             @Override
-            public void onSuccess(OrderDao data, String message) {
+            public void onSuccess(OrderDao order, String message) {
                 if (isFinishing() || isDestroyed()) return;
-                render(data);
+                render(order);
             }
 
             @Override

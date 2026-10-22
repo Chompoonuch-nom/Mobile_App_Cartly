@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -9,13 +7,11 @@
     android:orientation="vertical"
     tools:context=".CategoryManageActivity">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.example.cartly.View.ToolbarView
         android:id="@+id/toolbar"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/light_purple"
-        app:title="จัดการหมวดหมู่"
-        app:titleTextColor="@color/ink"/>
+        android:layout_height="?attr/actionBarSize"/>
     <Button
         android:id="@+id/btnAddCategory"
         android:layout_width="match_parent"
@@ -27,7 +23,8 @@
         android:backgroundTint="@color/green_brand"
         android:fontFamily="@font/adlamdisplay_regular"
         android:textStyle="bold"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCategories"
         android:layout_width="match_parent"

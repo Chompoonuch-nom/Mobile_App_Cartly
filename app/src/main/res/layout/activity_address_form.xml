@@ -1,144 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_f6"
     tools:context=".AddressFormActivity">
 
-    <LinearLayout
+    <com.example.cartly.View.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
-        <TextView
-            android:id="@+id/tvFormTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="เพิ่มที่อยู่ใหม่"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/adlamdisplay_regular"
-            android:layout_marginBottom="16dp"/>
-        <EditText
-            android:id="@+id/edtLabelType"
-            android:background="@drawable/bg_input"
-            android:padding="10dp"
+        android:layout_height="?attr/actionBarSize"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ป้ายกำกับ เช่น บ้าน, ที่ทำงาน"
-            android:fontFamily="@font/adlamdisplay_regular"
-            android:textSize="12sp"
-            android:textColor="@color/black"/>
-        <EditText
-            android:id="@+id/edtRecipientName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_input"
-            android:padding="10dp"
-            android:hint="ชื่อผู้รับ"
-            android:fontFamily="@font/adlamdisplay_regular"
-            android:textSize="12sp"
-            android:textColor="@color/black"/>
-        <EditText
-            android:id="@+id/edtPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_input"
-            android:padding="10dp"
-            android:hint="เบอร์โทรผู้รับ"
-            android:inputType="phone"
-            android:fontFamily="@font/adlamdisplay_regular"
-            android:textSize="12sp"
-            android:textColor="@color/black"/>
-        <EditText
-            android:id="@+id/edtAddressLine"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_input"
-            android:padding="10dp"
-            android:hint="บ้านเลขที่ / ถนน / ซอย"
-            android:fontFamily="@font/adlamdisplay_regular"
-            android:textSize="12sp"
-            android:textColor="@color/black"/>
-        <EditText
-            android:id="@+id/edtSubDistrict"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_input"
-            android:padding="10dp"
-            android:hint="ตำบล / แขวง"
-            android:fontFamily="@font/adlamdisplay_regular"
-            android:textSize="12sp"
-            android:textColor="@color/black"/>
-        <EditText
-            android:id="@+id/edtDistrict"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_input"
-            android:padding="10dp"
-            android:hint="อำเภอ / เขต"
-            android:fontFamily="@font/adlamdisplay_regular"
-            android:textSize="12sp"
-            android:textColor="@color/black"/>
-        <EditText
-            android:id="@+id/edtProvince"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_input"
-            android:padding="10dp"
-            android:hint="จังหวัด"
-            android:fontFamily="@font/adlamdisplay_regular"
-            android:textSize="12sp"
-            android:textColor="@color/black"/>
-        <EditText
-            android:id="@+id/edtPostalCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_input"
-            android:padding="10dp"
-            android:hint="รหัสไปรษณีย์"
-            android:inputType="number"
-            android:fontFamily="@font/adlamdisplay_regular"
-            android:textSize="12sp"
-            android:textColor="@color/black"/>
-        <CheckBox
-            android:id="@+id/cbIsDefault"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="ตั้งเป็นที่อยู่หลัก"
-            android:textColor="@color/black"
-            android:fontFamily="@font/adlamdisplay_regular"/>
-        <Button
-            android:id="@+id/btnSave"
-            android:backgroundTintMode="src_atop"
-            android:backgroundTint="@color/green_brand"
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:text="@string/save_th"
-            android:fontFamily="@font/adlamdisplay_regular"
-            android:textStyle="bold"
-            android:textSize="14sp"/>
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:visibility="gone" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:padding="20dp">
 
-</ScrollView>
+            <EditText
+                android:id="@+id/edtLabelType"
+                android:background="@drawable/bg_input"
+                android:inputType="text"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="ป้ายกำกับ เช่น บ้าน, ที่ทำงาน"
+                android:fontFamily="@font/adlamdisplay_regular"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                tools:ignore="Autofill,HardcodedText" />
+            <EditText
+                android:id="@+id/edtRecipientName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_input"
+                android:inputType="text"
+                android:padding="10dp"
+                android:hint="ชื่อผู้รับ"
+                android:fontFamily="@font/adlamdisplay_regular"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                tools:ignore="Autofill,HardcodedText" />
+            <EditText
+                android:id="@+id/edtPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_input"
+                android:padding="10dp"
+                android:hint="เบอร์โทรผู้รับ"
+                android:inputType="phone"
+                android:fontFamily="@font/adlamdisplay_regular"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                tools:ignore="Autofill,HardcodedText" />
+            <EditText
+                android:id="@+id/edtAddressLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_input"
+                android:padding="10dp"
+                android:hint="บ้านเลขที่ / ถนน / ซอย"
+                android:fontFamily="@font/adlamdisplay_regular"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                tools:ignore="Autofill,HardcodedText,TextFields" />
+            <EditText
+                android:id="@+id/edtSubDistrict"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_input"
+                android:padding="10dp"
+                android:hint="ตำบล / แขวง"
+                android:fontFamily="@font/adlamdisplay_regular"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                tools:ignore="Autofill,HardcodedText,TextFields" />
+            <EditText
+                android:id="@+id/edtDistrict"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_input"
+                android:padding="10dp"
+                android:hint="อำเภอ / เขต"
+                android:fontFamily="@font/adlamdisplay_regular"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                tools:ignore="Autofill,HardcodedText,TextFields" />
+            <EditText
+                android:id="@+id/edtProvince"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_input"
+                android:padding="10dp"
+                android:hint="จังหวัด"
+                android:fontFamily="@font/adlamdisplay_regular"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                tools:ignore="Autofill,HardcodedText,TextFields" />
+            <EditText
+                android:id="@+id/edtPostalCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_input"
+                android:padding="10dp"
+                android:hint="รหัสไปรษณีย์"
+                android:inputType="number"
+                android:fontFamily="@font/adlamdisplay_regular"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                tools:ignore="Autofill,HardcodedText" />
+            <CheckBox
+                android:id="@+id/cbIsDefault"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="ตั้งเป็นที่อยู่หลัก"
+                android:textColor="@color/black"
+                android:fontFamily="@font/adlamdisplay_regular"
+                tools:ignore="HardcodedText" />
+            <Button
+                android:id="@+id/btnSave"
+                android:backgroundTintMode="src_atop"
+                android:backgroundTint="@color/green_brand"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="@string/save_th"
+                android:fontFamily="@font/adlamdisplay_regular"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

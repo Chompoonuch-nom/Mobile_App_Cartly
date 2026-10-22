@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -12,13 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <androidx.appcompat.widget.Toolbar
+        <com.example.cartly.View.ToolbarView
             android:id="@+id/toolbar"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/light_purple"
-            android:title="รายละเอียดคำสั่งซื้อ"
-            app:titleTextColor="@color/black"/>
+            android:layout_height="?attr/actionBarSize"/>
         <RelativeLayout
             android:id="@+id/layoutLoading"
             android:visibility="gone"
@@ -46,7 +43,8 @@
                 android:textStyle="bold"
                 android:text="tvOrderIdDetail"
                 android:fontFamily="@font/adlamdisplay_regular"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                tools:ignore="HardcodedText" />
             <TextView
                 android:id="@+id/tvOrderStatusDetail"
                 android:layout_width="match_parent"
@@ -56,7 +54,8 @@
                 android:text="tvOrderStatusDetail"
                 android:fontFamily="@font/adlamdisplay_regular"
                 android:textColor="@color/black"
-                android:layout_marginTop="4dp"/>
+                android:layout_marginTop="4dp"
+                tools:ignore="HardcodedText" />
             <TextView
                 android:id="@+id/tvOrderDateDetail"
                 android:layout_width="match_parent"
@@ -66,7 +65,8 @@
                 android:text="tvOrderDateDetail"
                 android:fontFamily="@font/adlamdisplay_regular"
                 android:textColor="@color/black"
-                android:layout_marginTop="2dp"/>
+                android:layout_marginTop="2dp"
+                tools:ignore="HardcodedText" />
 
             <View
                 android:layout_width="match_parent"
@@ -94,7 +94,8 @@
                 android:textStyle="bold"
                 android:text="tvOrderTotalDetail"
                 android:fontFamily="@font/adlamdisplay_regular"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                tools:ignore="HardcodedText" />
 
             <Button
                 android:id="@+id/btnCancelOrder"
@@ -106,7 +107,8 @@
                 android:backgroundTint="@color/butter"
                 android:text="ยกเลิกคำสั่งซื้อ"
                 android:textStyle="bold"
-                android:fontFamily="@font/adlamdisplay_regular"/>
+                android:fontFamily="@font/adlamdisplay_regular"
+                tools:ignore="HardcodedText" />
 
             <LinearLayout
                 android:id="@+id/layoutAdminStatus"
@@ -127,7 +129,8 @@
                     android:textStyle="bold"
                     android:textSize="14sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/adlamdisplay_regular"/>
+                    android:fontFamily="@font/adlamdisplay_regular"
+                    tools:ignore="HardcodedText" />
                 <Spinner
                     android:id="@+id/spinnerStatus"
                     android:layout_width="match_parent"
@@ -142,7 +145,8 @@
                     android:textStyle="bold"
                     android:fontFamily="@font/adlamdisplay_regular"
                     android:backgroundTintMode="src_atop"
-                    android:backgroundTint="@color/green_brand"/>
+                    android:backgroundTint="@color/green_brand"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

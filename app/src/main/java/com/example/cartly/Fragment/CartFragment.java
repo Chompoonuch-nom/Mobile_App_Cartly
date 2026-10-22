@@ -1,5 +1,6 @@
 package com.example.cartly.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -46,7 +47,7 @@ public class CartFragment extends Fragment {
     };
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentCartBinding.inflate(inflater, container, false);
@@ -104,6 +105,7 @@ public class CartFragment extends Fragment {
         cartApiService.getMyCart(renderCallback);
     }
 
+    @SuppressLint("SetTextI18n")
     private void renderCart(CartDao cart) {
         cartItemAdapter.setItems(cart.getItems());
         boolean empty = cart.getItems() == null || cart.getItems().isEmpty();
